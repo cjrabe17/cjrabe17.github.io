@@ -1,52 +1,63 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<title>Cassandra's Portfolio</title>
+	<title>Contact Me</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 
-<header>
+<div class="headerContainer">
+	<header>
+		<h1>Cassandra Rabe</h1>	
 
-	<h1>Cassandra Rabe</h1>
+		<div class="topMenu">
+			
+			<a href="index.html">About</a> | 
+			<a href="portfolio.html">Portfolio</a> | 
+			<a href="contact.html">Contact</a>
 
-</header>
+		</div>
+	</header>
+</div>
 
-<div>
-	<nav>
+<div class="clearFix"></div>
 
-		<a href="index.html">About</a>
-		<a href="portfolio.html">Portfolio</a>
-		<a href="contact.html">Contact</a>
-
-	</nav>
-
+<div class="wrapper">
 	<section>
-
-		<h2>Connect with Me</h2>
-		<br>
-		<a href="https://github.com/cjrabe17" target="_blank">
-			<img src="assets/images/GitHub-Mark-64px.png" alt="GitHub Icon">
-		</a>
-		
-		<a href="https://www.linkedin.com/in/cjrabe17/" target="_blank">
-			<img src="assets/images/linkedinicon.png" alt="LinkedIn Icon">
-		</a>
-		
-		<a href="mailto:cjrabe17@gmail.com">
-			<img src="assets/images/emailicon.png" alt="Email Icon">
-		</a>
-
+		<h2>Contact</h2>
+			<div class="contentSeperator"></div>
+		<form>
+		  First Name<br>
+		  <input type="text" name="firstName"><br>
+		  Email Address<br>
+		  <input type="email" name="emailAddress">
+		  <br>
+		  <input type="submit" class="button" value="Submit">
+		</form>
 	</section>
 
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat est nec augue ultricies congue. Quisque sed magna a odio consequat fermentum non vitae nisi. Nam eleifend viverra nunc, in elementum erat semper eu. Sed sed malesuada neque, et vestibulum metus. Nam eget pharetra nulla. Quisque facilisis fringilla elit, vulputate venenatis sapien iaculis bibendum. Praesent dictum vel tortor id pulvinar. Vestibulum lectus erat, pellentesque vel odio vitae, tristique blandit nibh. Nunc venenatis ligula a finibus vehicula. Nullam eget consequat sapien, at feugiat ipsum. Nullam porttitor tempor nunc non cursus.</p>
+	<aside>
+		<h3>Connect With Me</h3>
 
-		<p>Duis semper pellentesque sodales. Sed viverra ante in velit hendrerit, ut convallis nisl cursus. Aenean mattis posuere nisl. Sed maximus placerat semper. Etiam elementum, enim vel bibendum ultricies, purus urna tempus erat, non lobortis tellus augue sed quam. In viverra vel ex eu molestie. Praesent sit amet felis ante. Cras vestibulum ac elit in imperdiet. Donec libero nulla, placerat ac tortor et, vehicula ultrices libero. Maecenas vitae ante mauris. Sed dapibus turpis at consequat congue. Duis lectus tortor, elementum non fringilla sed, vulputate non nunc. Cras porta ante ac imperdiet elementum.</p>
+		<div class="sidebarSeperator"></div>
+			<a href="https://github.com/cjrabe17" target="_blank">
+				<img src="assets/images/GitHub-Mark-64px.png" alt="GitHub Icon">
+			</a>
+			
+			<a href="https://www.linkedin.com/in/cjrabe17/" target="_blank">
+				<img src="assets/images/linkedinicon.png" alt="LinkedIn Icon">
+			</a>
+			
+			<a href="mailto:cjrabe17@gmail.com">
+				<img src="assets/images/emailicon.png" alt="Email Icon">
+			</a>
+	</aside>
 </div>
 
 <footer>
-	© Copyright 2017 Cassandra Rabe
+	<p>© Copyright 2017 Cassandra Rabe</p>
 </footer>
 
 </body>
