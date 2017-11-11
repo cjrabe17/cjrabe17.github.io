@@ -1,12 +1,12 @@
 html {
 	position: relative;
 	min-height: 100%;
-	padding: 0 0 50px;
 }
 
 body {
 	background: url("../images/intersection.png");	
 	background-repeat: repeat;
+	padding: 0 0 60px;
 }
 
 h1 {
