@@ -3,6 +3,7 @@ body {
 	color: #777777;
 	background: url("../images/intersection.png");	
 	background-repeat: repeat;
+	padding: 75px 0;
 }
 
 h1, h2, h3, h4 {
@@ -14,6 +15,8 @@ h1 {
 	color: #fff;
 	background: #4aaaa5;
 	text-align: center;
+	height: 50px;
+	line-height: 50px;
 }
 
 h2 {
@@ -25,9 +28,30 @@ h3 {
 	font-size: 20px;
 }
 
-.header {
+p {
+	text-indent: 10px;
+	margin-bottom: 20px;
+}
+
+.navbar-fixed-top {
+	background: #fff;
+	line-height: 50px;
+	border: 1px solid #ccc;
+}
+
+.header-nav {
+	color: #ffdddd;
+	font-size: 16px;
+}
+
+ .content img {
+	height: 200px;
+	width: 200px;
+	margin: 0 20px 20px 0;
+}
+
+.panel-heading {
 	background: white;
-	margin: 0 0 50px;
 }
 
 .panel-title {
@@ -35,10 +59,29 @@ h3 {
 	color: #4aaaa5;
 }
 
- .img-responsive {
-	height: 200px;
-	width: 200px;
-	margin-right: 20px;
+.panel-body img {
+	height: 50px;
+	width: 50px;
+	margin: 0 10px 10px 10px;
+}
+
+.content {
+	background: white;
+	border: 1px solid #ccc;
+}
+
+.navbar-fixed-bottom {
+	background: #555555;
+	border-top: solid 6px #4aaaa5;
+	line-height: 50px;
+}
+
+.nomargin {
+	margin: 0 !important;
+}
+
+.nopadding {
+	padding: 0 !important;
 }
 
 a:link {
@@ -54,14 +97,4 @@ a:hover {
 a:visited {
 	text-decoration: none;
 	color: #4aaaa5;
-}
-
-.panel-body img {
-	height: 50px;
-	width: 50px;
-	margin: 0 10px 10px 10px;
-}
-
-.content {
-	background: white;
 }
