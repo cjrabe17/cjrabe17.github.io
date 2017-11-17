@@ -1,3 +1,8 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 body {
 	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 	color: #777777;
@@ -27,6 +32,10 @@ h2 {
 
 h3 {
 	font-size: 20px;
+}
+
+h4 {
+	color: white;
 }
 
 p {
@@ -74,10 +83,18 @@ p {
 	margin: 0 10px 10px 10px;
 }
 
-.navbar-fixed-bottom {
+.footer {
+	clear: both;
 	background: #555555;
-	border-top: solid 6px #4aaaa5;
+	text-align: center;
 	line-height: 50px;
+	border-top: solid 6px #4aaaa5;
+	width: 100%;
+	height: 65px;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .nomargin {
@@ -143,48 +160,21 @@ textarea {
 	clear: both;
 }
 
-#portfolio img {
-	width: 300px;
-	height: 100%;
-	float: left;
+#portfolio {
+	background: white;
+	overflow: auto;
+	border: 1px solid #ccc;
 }
 
-#firstImage h4 {
-	float: left;
-	font-size: 20px;
-	color: white;
-	line-height: 30px;
-	text-align: center;
-	background-color: #4aaaa5;
-	width: 300px;
-	height: 40px;
-	position: absolute;
-	top: 150px;
+.thumbnail {
+    position: relative;
 }
 
-#secondImage h4 {
-	float: right;
+.caption {
+	background: #4aaaa5;
 	font-size: 20px;
-	color: white;
-	line-height: 40px;
-	text-align: center;
-	background-color: #4aaaa5;
-	width: 300px;
-	height: 40px;
-	position: absolute;
-	top: 140px;
-	right: 50px;
-}
-
-#thirdImage h4 {
-	float: left;
-	font-size: 20px;
-	color: white;
-	line-height: 40px;
-	text-align: center;
-	background-color: #4aaaa5;
-	width: 300px;
-	height: 40px;
-	position: absolute;
-	
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 100%;
 }
