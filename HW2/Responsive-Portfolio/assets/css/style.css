@@ -1,0 +1,273 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	background: url("../images/intersection.png");	
+	background-repeat: repeat;
+	padding: 0 0 60px;
+}
+
+h1 {
+	text-align: center;
+	font-weight: bold;
+	height: 65px;
+	width: 315px;
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	font-size: 32px;
+	line-height: 65px;
+	color: #ffffff;
+	background-color: #4aaaa5;
+	float: left;
+}
+
+h2 {
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	font-size: 26px;
+	color: #4aaaa5;
+	padding-top: 20px;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+h3 {
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	font-size: 20px;
+	color: #4aaaa5;
+	padding-top: 20px;
+	font-weight: bold;
+}
+
+h4 {
+	font-family: 'Georgia', Times, Times New Roman, serif;
+	background: #4aaaa5;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+p {
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	color: #777777;
+	font-size: 16px;
+}
+
+.headerContainer {
+	width: 100%;
+	background: #ffffff;
+	height: 65px;
+	border-bottom: solid 2px #cccccc;
+}
+
+.topMenu {
+	font-size: 14px;
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	line-height: 65px;
+	background: #ffffff;
+	color: #ffdddd;
+	float: right;
+	letter-spacing: .5px;
+	margin-right: 50px;
+}
+
+.topMenu a {
+	margin: 0 2px;
+}
+
+header {
+	background: #ffffff;
+	width: 960px;
+	margin: 0 auto;
+}
+
+.clearFix {
+	clear: both;
+}
+
+.wrapper {
+	width: 960px;
+	height: 100%;
+	overflow: auto;
+	margin: 25px auto;
+	padding: 0 0 50px;
+	position: relative;
+	min-height: 100%;
+}
+
+section {
+	width: 650px;
+	background: #ffffff;
+	border: solid 1px #dddddd;
+	float: left;
+}
+
+.contentSeperator {
+	height: 2px;
+	background: #999999;
+	margin: 20px;
+	clear: both;
+}
+
+aside {
+	background: #ffffff;
+	width: 270px;
+	text-align: center;
+	border: solid 1px #dddddd;
+	float: right;
+}
+
+aside img {
+	height: 50px;
+	width: 50px;
+	margin: 0 10px 10px 10px;
+}
+
+.sidebarSeperator {
+	height: 1.5px;
+	background: #cccccc;
+	margin: 20px 10px 20px 10px;
+}
+
+footer {
+	clear: both;
+	background: #555555;
+	text-align: center;
+	line-height: 50px;
+	border-top: solid 6px #4aaaa5;
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+footer p {
+	font-size: 14px;
+	color: #cccccc;
+}
+
+a:link {
+	text-decoration: none;
+	color: #999999;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #4aaaa5;
+}
+
+form {
+	margin: 0 0 20px 20px;
+	font-size: 16px;
+	line-height: 30px;
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	color: #777777;
+}
+
+form input, textarea {
+	padding-left: 5px;
+	margin-bottom: 10px;
+}
+
+.inputRow {
+	width: 600px;
+	height: 30px;
+}
+
+textarea {
+	width: 600px;
+	height: 300px;
+}
+
+.submitButton {
+	background-color: #4aaaa5;
+	color: #ffffff;
+	border: none;
+	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.portfolio {
+	width: 650px;
+	background: #ffffff;
+	border: solid 1px #dddddd;
+	float: left;
+	margin-bottom: 20px;
+}
+
+.thumbnail {
+	position: relative;
+}
+
+.thumbnail img {
+	height: 225px;
+	float: left;
+}
+
+.caption {
+	text-align: center;
+	position: absolute;
+    top: 50%;
+}
+
+@media screen and (max-width: 980px) {
+	body {
+		background: blue;
+	}
+
+	.wrapper {
+		width: 980px;
+	}
+
+	section {
+		width: 60%;
+	}
+
+	#portfolio {
+		width: 60%;
+	}
+	
+	aside {
+		width: 30%;
+	}
+
+	.footer {
+		width: 100%;
+	}
+
+	.inputRow, textarea {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		background: red;
+	}
+
+	.wrapper {
+		width: 768px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	body {
+		background: green;
+	}
+
+	.wrapper {
+		width: 640px;
+	}
+}
