@@ -1,0 +1,12 @@
+.left-box, .right-box {
+	border: dashed 3px black;
+}
+
+img {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.newDiv {
+	display: inline;
+}
