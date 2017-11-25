@@ -45,7 +45,6 @@ if (wordToGuess.indexOf(userKeyPressed) > -1) {
 		// When remaining guesses run out
 		if (remainingGuesses == 0) {
 			document.getElementById("wrong").innerHTML = "You lose.";
-			console.log("You made it.")
 			var image = document.getElementById("image");
 			image.src = "assets/images/sadclaptrap.jpg";
 			var audio = new Audio("assets/audio/lose.mp3");
@@ -67,19 +66,19 @@ if (wordToGuess.indexOf(userKeyPressed) > -1) {
 			var audio = new Audio("assets/audio/stillalive.mp3");
 			audio.play();
 		} else if (wordToGuess == "zork") {
-			var audio = new Audio("assets/audio/???.mp3");
+			var audio = new Audio("assets/audio/zork.mp3");
 			audio.play();
 		} else if (wordToGuess == "pacman") {
-			var audio = new Audio("assets/audio/???.mp3");
+			var audio = new Audio("assets/audio/pacman.mp3");
 			audio.play();
 		} else if (wordToGuess == "halflife") {
-			var audio = new Audio("assets/audio/???.mp3");
+			var audio = new Audio("assets/audio/halflife.mp3");
 			audio.play();
 		} else if (wordToGuess == "minecraft") {
-			var audio = new Audio("assets/audio/???.mp3");
+			var audio = new Audio("assets/audio/minecraft.mp3");
 			audio.play();
 		} else if (wordToGuess == "borderlands") {
-			var audio = new Audio("assets/audio/???.mp3");
+			var audio = new Audio("assets/audio/borderlands.mp3");
 			audio.play();
 		}
 	}
