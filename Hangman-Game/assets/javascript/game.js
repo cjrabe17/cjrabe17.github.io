@@ -1,10 +1,11 @@
 
 words = ["zork", "mario", "portal", "pacman", "halflife", "minecraft", "borderlands"];
 aryGuess = [];
+aryPositions = [];
 winCounter = 0;
-// document.getElementById("wins").innerHTML = winCounter;
+document.getElementById("wins").innerHTML = winCounter;
 remainingGuesses = 13;
-// document.getElementById("guesses").innerHTML = remainingGuesses;
+document.getElementById("guesses").innerHTML = remainingGuesses;
 
 // Picks a random word from those available in the array
 var wordToGuess = words[Math.floor(Math.random() * words.length)];
@@ -12,7 +13,6 @@ var wordToGuess = words[Math.floor(Math.random() * words.length)];
 	console.log(wordToGuess.length);
 
 // Displays underscores for the # of letters of the chosen word
-aryPositions = [];
 for (var i = 0; i < wordToGuess.length; i++) {
 	aryPositions[i] = "_";
 	underscores.innerHTML = aryPositions.join(" ");
@@ -33,6 +33,7 @@ if (wordToGuess.indexOf(userKeyPressed) > -1) {
 			underscores.innerHTML = aryPositions.join(" ");
 		}
 	}
+
 // If the letter isn't in the word
 } else {
 	remainingGuesses--;
@@ -45,11 +46,41 @@ if (wordToGuess.indexOf(userKeyPressed) > -1) {
 		if (remainingGuesses == 0) {
 			document.getElementById("wrong").innerHTML = "You lose.";
 			console.log("You made it.")
-			// reset();
+			var image = document.getElementById("image");
+			image.src = "assets/images/sadclaptrap.jpg";
+			var audio = new Audio("assets/audio/lose.mp3");
+			audio.play();
+			// newGame();???
+		}
+	}
+// Once all letters are filled in, trigger "win" scenario
+	if (aryPositions.indexOf("_") == -1) {
+		winCounter++;
+		wins.innerHTML = winCounter;
+		console.log("winner");
+		// Play song to accompany correctly guess word
+		if (wordToGuess == "mario") {
+			title.innerHTML = wordToGuess;
+			var audio = new Audio("assets/audio/supermariobros.mp3");
+			audio.play();
+		} else if (wordToGuess == "portal") {
+			var audio = new Audio("assets/audio/stillalive.mp3");
+			audio.play();
+		} else if (wordToGuess == "zork") {
+			var audio = new Audio("assets/audio/???.mp3");
+			audio.play();
+		} else if (wordToGuess == "pacman") {
+			var audio = new Audio("assets/audio/???.mp3");
+			audio.play();
+		} else if (wordToGuess == "halflife") {
+			var audio = new Audio("assets/audio/???.mp3");
+			audio.play();
+		} else if (wordToGuess == "minecraft") {
+			var audio = new Audio("assets/audio/???.mp3");
+			audio.play();
+		} else if (wordToGuess == "borderlands") {
+			var audio = new Audio("assets/audio/???.mp3");
+			audio.play();
 		}
 	}
 }
-
-// var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-// winCounter++;

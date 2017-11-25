@@ -2,11 +2,18 @@
 	border: dashed 3px black;
 }
 
+.right-box {
+	border-left: none;
+}
+
 img {
+	height: 350px;
+	width: 100%;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.newDiv {
-	display: inline;
+#title {
+	text-align: center;
+	text-transform: capitalize
 }
