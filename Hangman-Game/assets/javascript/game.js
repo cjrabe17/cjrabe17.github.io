@@ -2,84 +2,109 @@
 words = ["zork", "mario", "portal", "pacman", "halflife", "minecraft", "borderlands"];
 aryGuess = [];
 aryPositions = [];
-winCounter = 0;
-document.getElementById("wins").innerHTML = winCounter;
-remainingGuesses = 13;
-document.getElementById("guesses").innerHTML = remainingGuesses;
+
+function showWins() {
+	winCounter = 0;
+	document.getElementById("wins").innerHTML = winCounter;
+}
+
+function showRemainingGuesses() {
+	remainingGuesses = 8;
+	document.getElementById("guesses").innerHTML = remainingGuesses;
+}
+
+// Resets everything but the win counter
+function newGame () {
+	aryPositions = [];
+	aryGuess = [];
+	document.getElementById("wrong").innerHTML = aryGuess;
+	randomWord();
+	displayUnderscores();
+	showRemainingGuesses();
+}
 
 // Picks a random word from those available in the array
-var wordToGuess = words[Math.floor(Math.random() * words.length)];
-	console.log(wordToGuess);
-	console.log(wordToGuess.length);
+function randomWord() {
+	wordToGuess = words[Math.floor(Math.random() * words.length)];
+}
 
 // Displays underscores for the # of letters of the chosen word
-for (var i = 0; i < wordToGuess.length; i++) {
-	aryPositions[i] = "_";
-	underscores.innerHTML = aryPositions.join(" ");
+function displayUnderscores() {
+	underscores.innerHTML = underscores;
+	for (var i = 0; i < wordToGuess.length; i++) {
+		aryPositions[i] = "_";
+		underscores.innerHTML = aryPositions.join(" ");
+	}
 }
+
+function checkWin() {
+	// Once all letters are filled in, trigger "win" scenario
+	if (aryPositions.indexOf("_") == -1) {
+		winCounter++;
+		wins.innerHTML = winCounter;
+		title.innerHTML = wordToGuess;
+		var image = document.getElementById("image");
+		if (wordToGuess == "mario") {
+			image.src = "assets/images/mario.png";
+		} else if (wordToGuess == "portal") {
+			image.src = "assets/images/portal.png";
+		} else if (wordToGuess == "zork") {
+			image.src = "assets/images/zork.jpg";
+		} else if (wordToGuess == "pacman") {
+			image.src = "assets/images/pacman.jpg";
+		} else if (wordToGuess == "halflife") {
+			image.src = "assets/images/halflife.png";
+		} else if (wordToGuess == "minecraft") {
+			image.src = "assets/images/minecraft.png";
+		} else if (wordToGuess == "borderlands") {
+			image.src = "assets/images/borderlands.png";
+		}
+		setTimeout(newGame, 2000);
+		// newGame();
+	}
+}
+
+function checkLoss() {
+	// When remaining guesses run out
+	if (remainingGuesses == 0) {
+		document.getElementById("wrong").innerHTML = "You lose.";
+		var image = document.getElementById("image");
+		image.src = "assets/images/sadclaptrap.jpg";
+		var audio = new Audio("assets/audio/lose.mp3");
+		audio.play();
+		newGame();
+	}
+}
+
+
+
+// Start of game
+randomWord();
+displayUnderscores();
+showWins();
+showRemainingGuesses();
 
 // Listens for the user's key press and converts it to lowercase
 document.onkeypress = function(event) {
 	var userKeyPressed = String.fromCharCode(event.keyCode).toLowerCase();
-	console.log(userKeyPressed);
-	console.log(wordToGuess.indexOf(userKeyPressed));
 
 // If the letter is in the word
 if (wordToGuess.indexOf(userKeyPressed) > -1) {
 	for (var i = 0; i < wordToGuess.length; i++) {
 		if (wordToGuess[i] == userKeyPressed) {
 			aryPositions[i] = userKeyPressed;
-			console.log(aryPositions);
 			underscores.innerHTML = aryPositions.join(" ");
 		}
 	}
-
-// If the letter isn't in the word
+} else if (aryGuess.includes(userKeyPressed)) {
+	// If the wrong key has been pressed before, nothing will happen
 } else {
+	// If the letter isn't in the word
 	remainingGuesses--;
 	guesses.innerHTML = remainingGuesses;
-	console.log(aryGuess);
 	aryGuess.push(userKeyPressed);
-	console.log(aryGuess);
 	wrong.innerHTML = aryGuess.join(" ");
-		// When remaining guesses run out
-		if (remainingGuesses == 0) {
-			document.getElementById("wrong").innerHTML = "You lose.";
-			var image = document.getElementById("image");
-			image.src = "assets/images/sadclaptrap.jpg";
-			var audio = new Audio("assets/audio/lose.mp3");
-			audio.play();
-			// newGame();???
-		}
-	}
-// Once all letters are filled in, trigger "win" scenario
-	if (aryPositions.indexOf("_") == -1) {
-		winCounter++;
-		wins.innerHTML = winCounter;
-		console.log("winner");
-		// Play song to accompany correctly guess word
-		if (wordToGuess == "mario") {
-			title.innerHTML = wordToGuess;
-			var audio = new Audio("assets/audio/supermariobros.mp3");
-			audio.play();
-		} else if (wordToGuess == "portal") {
-			var audio = new Audio("assets/audio/stillalive.mp3");
-			audio.play();
-		} else if (wordToGuess == "zork") {
-			var audio = new Audio("assets/audio/zork.mp3");
-			audio.play();
-		} else if (wordToGuess == "pacman") {
-			var audio = new Audio("assets/audio/pacman.mp3");
-			audio.play();
-		} else if (wordToGuess == "halflife") {
-			var audio = new Audio("assets/audio/halflife.mp3");
-			audio.play();
-		} else if (wordToGuess == "minecraft") {
-			var audio = new Audio("assets/audio/minecraft.mp3");
-			audio.play();
-		} else if (wordToGuess == "borderlands") {
-			var audio = new Audio("assets/audio/borderlands.mp3");
-			audio.play();
-		}
-	}
+}
+checkLoss();
+checkWin();
 }

@@ -1,9 +1,35 @@
-.left-box, .right-box {
-	border: dashed 3px black;
+body {
+	background-image: url("../images/darkness.png");
+	color: white;
+	font-family: 'Orbitron', sans-serif;
+	font-size: 18px;
 }
 
-.right-box {
-	border-left: none;
+h1, h2 {
+	font-family: 'Press Start 2P', cursive;
+}
+
+h1 {
+	letter-spacing: 5px;
+	text-shadow: 0 0 10px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,1), 0 0 40px #00ffff, 0 0 70px #00ffff, 0 0 80px #00ffff, 0 0 100px #00ffff;
+}
+
+h2 {
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+}
+
+h3 {
+	font-family: 'Orbitron', sans-serif;
+	letter-spacing: 3px;
+	font-weight: bold;
+}
+
+.left-box, .right-box {
+	border: dashed 3px white;
+}
+
+.left-box {
+	border-right: none;
 }
 
 img {
