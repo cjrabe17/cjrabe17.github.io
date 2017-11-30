@@ -12,6 +12,7 @@ var songs = {
 	halflife: "assets/audio/halflife.mp3",
 	minecraft: "assets/audio/minecraft.mp3",
 	borderlands: "assets/audio/borderlands.mp3",
+	lose: "assets/audio/lose.mp3",
 }
 
 function showWins() {
@@ -95,7 +96,7 @@ function checkLoss() {
 		document.getElementById("wrong").innerHTML = "You lose.";
 		var image = document.getElementById("image");
 		image.src = "assets/images/sadclaptrap.jpg";
-		var audio = new Audio("assets/audio/lose.mp3");
+		audio.src = songs.lose;
 		audio.play();
 		setTimeout(newGame, 1500);
 	}
