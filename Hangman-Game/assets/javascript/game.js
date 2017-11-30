@@ -94,7 +94,7 @@ function checkLoss() {
 	// When remaining guesses run out
 	if (remainingGuesses == 0) {
 		document.getElementById("wrong").innerHTML = "You lose.";
-		title.innerHTML = "";
+		document.getElementById("title").innerHTML = "";
 		var image = document.getElementById("image");
 		image.src = "assets/images/sadclaptrap.jpg";
 		audio.src = songs.lose;
