@@ -33,7 +33,7 @@ h3 {
 }
 
 img {
-	height: 350px;
+	max-height: 350px;
 	margin: 10px auto;
 }
 
