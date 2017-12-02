@@ -1,0 +1,10 @@
+body {
+	background: url("../images/court.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: #cccccc;
+}
+
+h1 {
+	text-align: center;
+}
