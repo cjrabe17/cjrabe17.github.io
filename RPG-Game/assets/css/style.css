@@ -15,16 +15,12 @@ h1 {
 	text-transform: uppercase;
 }
 
-h2, h3, h4, h5, h6, .btn-lg {
+h2, h3, h4, h5, h6, p, .btn-lg {
 	font-family: 'Exo 2', sans-serif;
 }
 
 h6 {
 	font-size: 20px;
-}
-
-.thumbnail img {
-	display: inline;
 }
 
 .thumbnail {
