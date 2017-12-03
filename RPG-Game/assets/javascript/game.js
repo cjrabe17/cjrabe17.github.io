@@ -1,3 +1,4 @@
+$(document).ready(function() {
 // Global variables
 var gator = {
 	name: Florida Gators,
@@ -34,10 +35,6 @@ var kentucky = {
 		Math.floor((Math.random() * 50) + 1);
 	}
 }
-
-
-
-$(document).ready(function() {
 
 
 	$(".attack-button").on("click", function() {
