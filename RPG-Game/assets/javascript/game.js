@@ -63,6 +63,8 @@ function checkLoss() {
 		$(".activeOpponent").hide();
 		$(".fight-stats h6").html("You lose! Click Reset to try again.");
 		$(".reset-button").show();
+		$("h3").hide();
+		$(".teams").hide();
 	}
 }
 
@@ -83,6 +85,7 @@ function checkEndGame() {
 		$(".attacker").addClass("col-md-offset-5");
 		$(".fight-stats h6").html("The " + userPlayer.name + " win the national championship!");
 		$(".fight-stats").prepend("<img src='assets/images/trophy.png'>");
+		$("h3").hide();
 	}
 }
 
@@ -95,21 +98,25 @@ $(".thumbnail").on("click", function() {
 		$("h3").text("Click a team to attack!");
 		if ($(this).hasClass("gators")) {
 			userPlayer = gators;
+			$(".kentucky, .noles, .duke").addClass("bench");
 		};
 		if ($(this).hasClass("kentucky")) {
 			userPlayer = kentucky;
+			$(".gators, .noles, .duke").addClass("bench");
 		};
 		if ($(this).hasClass("noles")) {
 			userPlayer = noles;
+			$(".gators, .kentucky, .duke").addClass("bench");
 		};
 		if ($(this).hasClass("duke")) {
 			userPlayer = duke;
+			$(".kentucky, .noles, .gators").addClass("bench");
 		};
 		startingAttackValue = userPlayer.attack();
 		attackerHealth = userPlayer.health;
 	} else if (attackerChosen == true && defenderChosen == false) {
 		$("h3").text("Benched Teams");
-		$(this).appendTo(".defender").addClass("activeOpponent");
+		$(this).appendTo(".defender").removeClass("bench").addClass("activeOpponent");
 		defenderChosen = true;
 		if ($(this).hasClass("gators")) {
 			currentOpponent = gators;

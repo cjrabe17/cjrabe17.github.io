@@ -6,8 +6,17 @@ body {
 }
 
 h1 {
+	font-family: 'Orbitron', sans-serif;
+	font-size: 42px;
+	text-shadow: 2px 2px #fff;
+	font-weight: bold;
 	margin-top: 40px;
 	text-align: center;
+	text-transform: uppercase;
+}
+
+h2, h3, h4, h5, h6, .btn-lg {
+	font-family: 'Exo 2', sans-serif;
 }
 
 h6 {
@@ -32,4 +41,8 @@ h6 {
 
 .fight-stats img {
 	height: 250px;
+}
+
+.bench {
+	background: grey;
 }
