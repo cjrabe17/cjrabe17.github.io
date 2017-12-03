@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/icon">
-	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity=sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<title>NCAA Basketball RPG</title>
@@ -12,59 +12,61 @@
 <body>
 
 <header>
-	<h1>NCAA Basketball RPG Game!</h1>
+	<h1>NCAA Basketball RPG!</h1>
 </header>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<div class="fight-stats">
-				<br>
-			</div>
 			<button class="btn-danger btn-lg attack-button">Attack</button>
+			<br>
+			<div class="fight-stats">
+				<h6></h6>
+			</div>
 		</div>
 	</div>
 
-	<div class="row versus center-block">
-		<div class="col-md-2 col-md-offset-4 attacker">
+	<div class="row center-block">
+		<div class="col-md-2 col-md-offset-4 attacker text-center">
 		<!-- Attacker icon will go here -->
 		</div>
-		<div class="col-md-2 defender">
+		<div class="col-md-2 defender text-center">
+		<!-- Defender icon will go here -->
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<h3>Click on a team to make it your attacker!</h3>
+			<h3>Click on a team to choose it as your attacker!</h3>
 			<br>
 		</div>
 	</div>
-	<div class="row teams text-center">
+	<div class="row text-center">
 		<div class="col-md-2 col-md-offset-2">
-			<div class="thumbnail">
+			<div class="thumbnail gators">
 				<h4>Florida Gators</h4>
 				<img src="assets/images/gators.jpeg" alt="Gators" class="img-responsive">
-				<h4>150</h4>
+				<h5>200</h5>
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="thumbnail">
+			<div class="thumbnail kentucky">
 				<h4>Kentucky Wildcats</h4>
 				<img src="assets/images/kentucky.jpg" alt="Wildcats" class="img-responsive">
-				<h4>100</h4>
+				<h5>120</h5>
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="thumbnail">
+			<div class="thumbnail noles">
 				<h4>Florida State Seminoles</h4>
 				<img src="assets/images/seminoles.jpeg" alt="Seminoles" class="img-responsive">
-				<h4>80</h4>
+				<h5>90</h5>
 			</div>
 		</div>
 		<div class="col-md-2">
-			<div class="thumbnail">
+			<div class="thumbnail duke">
 				<h4>Duke Blue Devils</h4>
 				<img src="assets/images/duke.jpg" alt="Blue Devils" class="img-responsive">
-				<h4>120</h4>
+				<h5>180</h5>
 			</div>
 		</div>
 		</div>

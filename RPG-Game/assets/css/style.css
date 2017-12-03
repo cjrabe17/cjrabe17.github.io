@@ -10,10 +10,18 @@ h1 {
 	text-align: center;
 }
 
-.versus {
-	height: 210px;
+h6 {
+	font-size: 20px;
 }
 
 .thumbnail {
 	border: 3px solid;
+}
+
+.activePlayer {
+	background: blue;
+}
+
+.activeOpponent {
+	background: red;
 }
