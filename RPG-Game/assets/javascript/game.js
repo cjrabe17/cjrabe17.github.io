@@ -1,11 +1,10 @@
-// ---------------------------------------
 // Global variables
 var gators = {
 	name: "Florida Gators",
 	health: 200,
 	counterAttack: 25,
 	attack: function() {
-		return Math.floor((Math.random() * 50) + 1);
+		return Math.floor((Math.random() * 20) + 1);
 	}
 }
 
@@ -14,16 +13,16 @@ var kentucky = {
 	health: 120,
 	counterAttack: 15,
 	attack: function() {
-		return Math.floor((Math.random() * 50) + 1);
+		return Math.floor((Math.random() * 20) + 1);
 	}
 }
 
 var noles = {
 	name: "Florida State Seminoles",
 	health: 90,
-	counterAttack: 10,
+	counterAttack: 12,
 	attack: function() {
-		return Math.floor((Math.random() * 50) + 1);
+		return Math.floor((Math.random() * 20) + 1);
 	}
 }
 
@@ -32,7 +31,7 @@ var duke = {
 	health: 180,
 	counterAttack: 20,
 	attack: function() {
-		return Math.floor((Math.random() * 50) + 1);
+		return Math.floor((Math.random() * 20) + 1);
 	}
 }
 
@@ -45,46 +44,50 @@ var startingAttackValue;
 var currentCounterAttack;
 var attackerHealth;
 var defenderHealth;
-var userImage;
-var opponentImage;
 
 $(document).ready(function() {
-// ---------------------------------------
 // Functions
-function checkWin() {
-	if (currentOpponent.health <= 0) {
-		$(".fight-stats").html("You win!");
-		// $(".activeOpponent").hide();
-		defendersDefeated++;
-	}
+function attack() {
+	currentCounterAttack = currentOpponent.counterAttack;
+	attackerHealth = attackerHealth - currentCounterAttack;
+	$(".activePlayer h5").html(attackerHealth);
+	defenderHealth = currentOpponent.health - startingAttackValue;
+	$(".activeOpponent h5").html(defenderHealth);
+	$(".fight-stats h6").html("You attacked for " + startingAttackValue + " points, and your opponent counter-attacked for " + currentCounterAttack + "!");
+	startingAttackValue = startingAttackValue + startingAttackValue;
+
 }
 
 function checkLoss() {
-	if (userPlayer.health <= 0) {
-		// alert("You lost!");
+	if (attackerHealth <= 0) {
+		$(".activeOpponent").hide();
+		$(".fight-stats h6").html("You lose! Click Reset to try again.");
+		$(".reset-button").show();
+	}
+}
+
+function checkWin() {
+	if (defenderHealth <= 0) {
+		defendersDefeated++;
+		$(".activeOpponent").hide();
+		defenderChosen = false;
+		$(".fight-stats h6").html("You win this match! Click another opponent!");
 	}
 }
 
 function checkEndGame() {
-	if (defendersDefeated = 3) {
-		// alert("You won the war!");
+	if (defendersDefeated == 3) {
+		$(".attack-button").unbind("click");
+		$(".defender").remove();
+		$(".attacker").removeClass("col-md-offset-4");
+		$(".attacker").addClass("col-md-offset-5");
+		$(".fight-stats h6").html("The " + userPlayer.name + " win the national championship!");
+		$(".fight-stats").prepend("<img src='assets/images/trophy.png'>");
 	}
 }
 
-function reset(){
-	opponentsDefeated = 0;
-	attackerChosen = false;
-	defenderChosen = false;
-	userPlayer;
-	currentOpponent;
-	startingValue;
-	$(".defender").empty();
-	$(".attacker").empty();
-	$(".fight-stats").empty();
-}
-
-
 // Start of game
+$(".reset-button").hide();
 $(".thumbnail").on("click", function() {
 	if (attackerChosen == false && defenderChosen == false) {
 		$(this).appendTo(".attacker").addClass("activePlayer");
@@ -103,6 +106,7 @@ $(".thumbnail").on("click", function() {
 			userPlayer = duke;
 		};
 		startingAttackValue = userPlayer.attack();
+		attackerHealth = userPlayer.health;
 	} else if (attackerChosen == true && defenderChosen == false) {
 		$("h3").text("Benched Teams");
 		$(this).appendTo(".defender").addClass("activeOpponent");
@@ -123,20 +127,18 @@ $(".thumbnail").on("click", function() {
 });
 
 $(".attack-button").on("click", function() {
-	// When both teams are filled
 	if (attackerChosen && defenderChosen) {
-		currentCounterAttack = currentOpponent.counterAttack;
-		attackerHealth = userPlayer.health - currentCounterAttack;
-		$(".activePlayer h5").html(attackerHealth);
-		opponentHealth = currentOpponent.health - startingAttackValue;
-		$(".activeOpponent h5").html(opponentHealth);
-		$(".fight-stats h6").html("You attacked for " + startingAttackValue + " points, and your opponent counter-attacked for " + currentCounterAttack + "!");
+		attack();
 		checkLoss();
 		checkWin();
 		checkEndGame();
 	} else {
 		alert("Please choose your teams first.");
 	}
+});
+
+$(".reset-button").on("click", function() {
+	location.reload(true);
 });
 
 // End of "document ready" code block

@@ -14,14 +14,22 @@ h6 {
 	font-size: 20px;
 }
 
+.thumbnail img {
+	display: inline;
+}
+
 .thumbnail {
 	border: 3px solid;
 }
 
 .activePlayer {
-	background: blue;
+	background: green;
 }
 
 .activeOpponent {
 	background: red;
+}
+
+.fight-stats img {
+	height: 250px;
 }
