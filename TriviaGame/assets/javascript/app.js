@@ -56,8 +56,8 @@ var questions = [
 	},
 	{ // Ninth question
 		q: "Which cartoon is set in \"The city of Townsville...\"?",
-		c: ["Cleopatra", "Valentine", "Theda", "Patti"],
-		answer: 3,
+		c: ["\"Rugrats\"", "\"SpongeBob SquarePants\"", "\"The PowerPuff Girls\"", "\"Hey Arnold!\""],
+		answer: 2,
 		gif: ""
 	},
 	{ // Tenth question
@@ -93,17 +93,11 @@ function stopTimer() {
 }
 
 function postQuestion() {
-	console.log("currentQuestionIndex: " + currentQuestionIndex);
-	if (currentQuestionIndex <= questions.length) {
-		$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
-		$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
-		$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
-		$(".buttonC").text(questions[currentQuestionIndex].c[2]).show();
-		$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
-	} else {
-		$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
-		$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
-	}
+	$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
+	$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
+	$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
+	$(".buttonC").text(questions[currentQuestionIndex].c[2]).show();
+	$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
 }
 
 // -------------------------------------
@@ -121,8 +115,13 @@ $(document).ready(function() {
 	    $(".questions-section").show();
 	    $(".answer-section").show();
 
-	    postQuestion();
 	    runTimer();
+	    if (currentQuestionIndex <= questions.length) {
+	    		postQuestion(currentQuestionIndex);
+	    	} else {
+				$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
+				$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
+			}
 
 	    $(".answer-section").find("button").on("click", function() {
 	    	var userChoice = $(this).attr("value"); // stored as a string not a number
@@ -140,7 +139,6 @@ $(document).ready(function() {
 	    		console.log("Wrong answers: " + wrongAnswers);
 	    		$(".questions-section").html(messages[1]);
 	    	}
-	    	postQuestion(currentQuestionIndex);
 	    })
 	})
 
