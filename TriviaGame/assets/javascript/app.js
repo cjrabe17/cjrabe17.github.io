@@ -7,7 +7,7 @@ var intervalId;
 var currentQuestionIndex = 0;
 var questions = [
 	{ // First question
-		q: "Where does Plankton from SpongeBob SquarePants work?",
+		q: "Where does Plankton from \"SpongeBob SquarePants\" work?",
 		c: ["The Chum Bucket", "The Bait Shop", "The Salty Spitoon", "The Weenie Hut"],
 		answer: 0,
 		gif: "https://media.giphy.com/media/3o6wNMBgB9iDS1DK1O/giphy.gif"
@@ -19,7 +19,7 @@ var questions = [
 		gif: "https://media.giphy.com/media/3ohjV1vqZH9TnocmSk/giphy.gif"
 	},
 	{ // Third question
-		q: "In which state does Rocket Power take place?",
+		q: "In which state does \"Rocket Power\" take place?",
 		c: ["Florida", "Hawaii", "California", "Arizona"],
 		answer: 2,
 		gif: "https://media.giphy.com/media/xT1R9Zb4kQj243sWKA/giphy.gif"
@@ -31,7 +31,7 @@ var questions = [
 		gif: "https://media.giphy.com/media/l3vR70U5vSA509vTq/giphy.gif"
 	},
 	{ // Fifth question
-		q: "What kind of animal is Rocko from Rocko's Mondern Life?",
+		q: "What kind of animal is Rocko from \"Rocko's Mondern Life?\"",
 		c: ["Kangaroo", "Wallaby", "Meerkat", "Jack Rabbit"],
 		answer: 1,
 		gif: "https://media.giphy.com/media/OQsa4Yca9BJFS/giphy.gif"
@@ -40,9 +40,37 @@ var questions = [
 		q: "Who was Doug Funnie's crush?",
 		c: ["Cleopatra", "Valentine", "Theda", "Patti"],
 		answer: 3,
-		gif: "https://media.giphy.com/media/OQsa4Yca9BJFS/giphy.gif"
+		gif: ""
+	},
+	{ // Seventh question
+		q: "Which character had an annoying little sister named Dee Dee?",
+		c: ["Tommy Pickes", "Dexter", "Beavis", "Johnny Bravo"],
+		answer: 1,
+		gif: ""
+	},
+	{ // Eighth question
+		q: "Which two mice had grand plans to take over the world?",
+		c: ["Wakko and Yakko", "Tom and Jerry", "Pinky and the Brain", "Beavis and Butt-head"],
+		answer: 2,
+		gif: ""
+	},
+	{ // Ninth question
+		q: "Which cartoon is set in \"The city of Townsville...\"?",
+		c: ["Cleopatra", "Valentine", "Theda", "Patti"],
+		answer: 3,
+		gif: ""
+	},
+	{ // Tenth question
+		q: "What celeb was the inspiration for Johnny Bravo's hair?",
+		c: ["Brad Pitt", "Elvis", "Keanu Reeves", "Johnny Depp"],
+		answer: 0,
+		gif: ""
 	},
 ];
+var messages = {
+	correct: "Yes, that's right!",
+	incorrect: "Sorry, that's not correct!"
+};
 
 // -------------------------------------
 
@@ -64,8 +92,9 @@ function stopTimer() {
   clearInterval(intervalId);
 }
 
-function postQuestion(n) {
-	if (currentQuestionIndex < questions.length) {
+function postQuestion() {
+	console.log("currentQuestionIndex: " + currentQuestionIndex);
+	if (currentQuestionIndex <= questions.length) {
 		$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
 		$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
 		$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
@@ -98,19 +127,22 @@ $(document).ready(function() {
 	    $(".answer-section").find("button").on("click", function() {
 	    	var userChoice = $(this).attr("value"); // stored as a string not a number
 	    	userChoice = parseInt(userChoice);
-	    	if (userChoice === questions[currentQuestionIndex].answer) {
+	    	if (userChoice == questions[currentQuestionIndex].answer) {
 	    		rightAnswers++;
 	    		currentQuestionIndex++;
 	    		console.log("Right answers: " + rightAnswers);
 	    		console.log("Wrong answers: " + wrongAnswers);
+	    		$(".questions-section").html(messages[0]);
 	    	} else {
 	    		wrongAnswers++;
 	    		currentQuestionIndex++;
 	    		console.log("Right answers: " + rightAnswers);
 	    		console.log("Wrong answers: " + wrongAnswers);
+	    		$(".questions-section").html(messages[1]);
 	    	}
+	    	postQuestion(currentQuestionIndex);
 	    })
-})
+	})
 
 
 }); // End of document ready code block
