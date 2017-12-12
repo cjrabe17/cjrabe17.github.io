@@ -73,32 +73,39 @@ var messages = ["Yes, that's right!", "Sorry, that's not correct!"];
 
 // Functions
 function runTimer() {
-  intervalId = setInterval(decrementTimer, 1000);
+  	intervalId = setInterval(decrementTimer, 1000);
 }
 
 function decrementTimer() {
-  number--;
-  $(".show-number").html("<h2>Time Remaining: " + number + "</h2>");
-  if (number === 0) {
-    stopTimer();
-    $(".show-number").append("<h2>Time's up!</h2>");
+	number--;
+	$(".show-number").html("<h2>Time Remaining: " + number + "</h2>");
+	if (number === 0) {
+		unansweredCounter++;
+	    currentQuestionIndex++;
+	    console.log("Right answers: " + rightAnswers);
+	    console.log("Wrong answers: " + wrongAnswers);
+	    console.log("Unanswered: " + unansweredCounter);
+	    console.log("Question index: " + currentQuestionIndex);
+	    postQuestion();
   }
 }
 
 function stopTimer() {
-  clearInterval(intervalId);
+	clearInterval(intervalId);
 }
 
 function postQuestion() {
-	$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
-	$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
-	$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
-	$(".buttonC").text(questions[currentQuestionIndex].c[2]).show();
-	$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
-}
-
-function showAnswer() {
-
+	if (currentQuestionIndex <= questions.length) {
+		runTimer();
+		$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
+		$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
+		$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
+		$(".buttonC").text(questions[currentQuestionIndex].c[2]).show();
+		$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
+	} else {
+		$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
+		$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
+	}
 }
 
 // -------------------------------------
@@ -116,48 +123,33 @@ $(document).ready(function() {
 	    $(".questions-section").show();
 	    $(".answer-section").show();
 
-	    runTimer();
+	    postQuestion();
 
 	    $(".answer-section").find("button").on("click", function() {
-	    	var userChoice = $(this).attr("value"); // stored as a string not a number
+	    	var userChoice = $(this).attr("value");
 	    	userChoice = parseInt(userChoice);
+	    	stopTimer();
 	    	if (userChoice === questions[currentQuestionIndex].answer) {
 	    		rightAnswers++;
-	    		currentQuestionIndex++;
 	    		console.log("Right answers: " + rightAnswers);
 	    		console.log("Wrong answers: " + wrongAnswers);
 	    		console.log("Unanswered: " + unansweredCounter);
-	    		console.log("Question index: " + currentQuestionIndex);
 	    		$(".questions-section").html("<h3>" + messages[0] + "</h3>");
-	    		showAnswer();
-	    	} else if (userChoice !== questions[currentQuestionIndex].answer) {
+	    		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+	    		currentQuestionIndex++;
+	    		console.log("Question index: " + currentQuestionIndex);
+	    	} else if (userChoice != questions[currentQuestionIndex].answer) {
 	    		wrongAnswers++;
 	    		currentQuestionIndex++;
 	    		console.log("Right answers: " + rightAnswers);
 	    		console.log("Wrong answers: " + wrongAnswers);
 	    		console.log("Unanswered: " + unansweredCounter);
-	    		console.log("Question index: " + currentQuestionIndex);
-	    		$(".questions-section").html("<h3>" + messages[1] + "</h3>");
-	    		showAnswer();
-	    	} else if (number === 0) {
-	    		unansweredCounter++;
-	    		currentQuestionIndex++;
-	    		console.log("Right answers: " + rightAnswers);
-	    		console.log("Wrong answers: " + wrongAnswers);
-	    		console.log("Unanswered: " + unansweredCounter);
-	    		console.log("Question index: " + currentQuestionIndex);
-	    		showAnswer();
+	    		$(".questions-section").html("<h3>" + messages[1] + "<br> The correct answer was: " + questions[currentQuestionIndex].c + "</h3>");
+	    		// showAnswer();
 	    	}
-	    }
 
-	    	postQuestion();
-
-	    	if (currentQuestionIndex <= questions.length) {
-	    		
-	    	} else {
-				$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
-				$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
-			}
+	    	// setTimeout(postQuestion(), 4000);
+	    
 	    });
 	})
 
