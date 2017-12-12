@@ -61,16 +61,13 @@ var questions = [
 		gif: ""
 	},
 	{ // Tenth question
-		q: "What celeb was the inspiration for Johnny Bravo's hair?",
+		q: "Which celeb was the inspiration for Johnny Bravo's hair?",
 		c: ["Brad Pitt", "Elvis", "Keanu Reeves", "Johnny Depp"],
 		answer: 0,
 		gif: ""
 	},
 ];
-var messages = {
-	correct: "Yes, that's right!",
-	incorrect: "Sorry, that's not correct!"
-};
+var messages = ["Yes, that's right!", "Sorry, that's not correct!"];
 
 // -------------------------------------
 
@@ -100,9 +97,13 @@ function postQuestion() {
 	$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
 }
 
+function showAnswer() {
+
+}
+
 // -------------------------------------
 
-// Begining of game
+// Beginning of game
 $(document).ready(function() {
 	$(".start-button").show();
 	$(".show-number").hide();
@@ -116,30 +117,48 @@ $(document).ready(function() {
 	    $(".answer-section").show();
 
 	    runTimer();
-	    if (currentQuestionIndex <= questions.length) {
-	    		postQuestion(currentQuestionIndex);
-	    	} else {
-				$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
-				$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
-			}
 
 	    $(".answer-section").find("button").on("click", function() {
 	    	var userChoice = $(this).attr("value"); // stored as a string not a number
 	    	userChoice = parseInt(userChoice);
-	    	if (userChoice == questions[currentQuestionIndex].answer) {
+	    	if (userChoice === questions[currentQuestionIndex].answer) {
 	    		rightAnswers++;
 	    		currentQuestionIndex++;
 	    		console.log("Right answers: " + rightAnswers);
 	    		console.log("Wrong answers: " + wrongAnswers);
-	    		$(".questions-section").html(messages[0]);
-	    	} else {
+	    		console.log("Unanswered: " + unansweredCounter);
+	    		console.log("Question index: " + currentQuestionIndex);
+	    		$(".questions-section").html("<h3>" + messages[0] + "</h3>");
+	    		showAnswer();
+	    	} else if (userChoice !== questions[currentQuestionIndex].answer) {
 	    		wrongAnswers++;
 	    		currentQuestionIndex++;
 	    		console.log("Right answers: " + rightAnswers);
 	    		console.log("Wrong answers: " + wrongAnswers);
-	    		$(".questions-section").html(messages[1]);
+	    		console.log("Unanswered: " + unansweredCounter);
+	    		console.log("Question index: " + currentQuestionIndex);
+	    		$(".questions-section").html("<h3>" + messages[1] + "</h3>");
+	    		showAnswer();
+	    	} else if (number === 0) {
+	    		unansweredCounter++;
+	    		currentQuestionIndex++;
+	    		console.log("Right answers: " + rightAnswers);
+	    		console.log("Wrong answers: " + wrongAnswers);
+	    		console.log("Unanswered: " + unansweredCounter);
+	    		console.log("Question index: " + currentQuestionIndex);
+	    		showAnswer();
 	    	}
-	    })
+	    }
+
+	    	postQuestion();
+
+	    	if (currentQuestionIndex <= questions.length) {
+	    		
+	    	} else {
+				$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
+				$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
+			}
+	    });
 	})
 
 
