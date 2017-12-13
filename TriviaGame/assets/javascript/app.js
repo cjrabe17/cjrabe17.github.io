@@ -3,7 +3,7 @@ var userChoice;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 var unansweredCounter = 0;
-var number = 30;
+var number = 10;
 var intervalId;
 var currentQuestionIndex = 0;
 var questions = [
@@ -41,31 +41,31 @@ var questions = [
 		q: "Who was Doug Funnie's crush?",
 		c: ["Cleopatra", "Valentine", "Theda", "Patti"],
 		answer: 3,
-		gif: ""
+		gif: "https://media.giphy.com/media/xT1R9HgPldnxXsolu8/giphy.gif"
 	},
 	{ // Seventh question
 		q: "Which character had an annoying little sister named Dee Dee?",
 		c: ["Tommy Pickes", "Dexter", "Beavis", "Johnny Bravo"],
 		answer: 1,
-		gif: ""
+		gif: "https://media.giphy.com/media/7Fvac4YAVsjew/giphy.gif"
 	},
 	{ // Eighth question
 		q: "Which two mice had grand plans to take over the world?",
 		c: ["Wakko and Yakko", "Tom and Jerry", "Pinky and the Brain", "Beavis and Butt-head"],
 		answer: 2,
-		gif: ""
+		gif: "https://media.giphy.com/media/LZFgI1B26kzG8/giphy.gif"
 	},
 	{ // Ninth question
 		q: "Which cartoon is set in \"The city of Townsville...\"?",
-		c: ["\"Rugrats\"", "\"SpongeBob SquarePants\"", "\"The PowerPuff Girls\"", "\"Hey Arnold!\""],
+		c: ["\"Rugrats\"", "\"SpongeBob SquarePants\"", "\"The Powerpuff Girls\"", "\"Hey Arnold!\""],
 		answer: 2,
-		gif: ""
+		gif: "https://media.giphy.com/media/KpDnCsHaiO7o4/giphy.gif"
 	},
 	{ // Tenth question
 		q: "Which celeb was the inspiration for Johnny Bravo's hair?",
 		c: ["Brad Pitt", "Elvis", "Keanu Reeves", "Johnny Depp"],
 		answer: 0,
-		gif: ""
+		gif: "https://media.giphy.com/media/ft80DuxKwT3K8/giphy.gif"
 	},
 ];
 var feedback = ["Yes, that's right!", "Sorry, that's not correct!", "Time's up!"];
@@ -78,8 +78,8 @@ function runTimer() {
 }
 
 function decrementTimer() {
-	number--;
 	$(".show-number").html("<h2>Time Remaining: " + number + "</h2>");
+	number--;
 	if (number === 0) {
 		stopTimer();
 		unansweredCounter++;
@@ -91,25 +91,17 @@ function decrementTimer() {
 
 function stopTimer() {
 	clearInterval(intervalId);
-}
-
-function resetTimer() {
-	number = 30;
+	number = 10;
 	intervalId;
 }
 
 function postQuestion() {
-	if (currentQuestionIndex <= questions.length) {
-		runTimer();
-		$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
-		$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
-		$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
-		$(".buttonC").text(questions[currentQuestionIndex].c[2]).show();
-		$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
-	} else {
-		$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
-		$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
-	}
+	runTimer();
+	$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
+	$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
+	$(".buttonB").text(questions[currentQuestionIndex].c[1]).show();
+	$(".buttonC").text(questions[currentQuestionIndex].c[2]).show();
+	$(".buttonD").text(questions[currentQuestionIndex].c[3]).show();
 }
 
 function checkAnswer() {
@@ -123,6 +115,13 @@ function checkAnswer() {
 		$(".questions-section").html("<h3>" + feedback[1] + "<br> The correct answer was: " + questions[currentQuestionIndex].c[questions[currentQuestionIndex].answer] + "</h3>");
 		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
 		currentQuestionIndex++;
+	}
+}
+
+function checkEnd() {
+	if (currentQuestionIndex == questions.length) {
+		$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
+		$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
 	}
 }
 
@@ -142,15 +141,15 @@ $(document).ready(function() {
 	    $(".answer-section").show();
 
 	    postQuestion();
+	});
 
-	    $(".answer-section").find("button").on("click", function() {
-	    	userChoice = $(this).attr("value");
-	    	userChoice = parseInt(userChoice);
-	    	stopTimer();
-	    	resetTimer();
-	    	checkAnswer();	    
-	    });
-	})
+	$(".answer-section").find("button").on("click", function() {
+		userChoice = $(this).attr("value");
+		userChoice = parseInt(userChoice);
+		stopTimer();
+		checkAnswer();
+		checkEnd();
+	});
 
 
 }); // End of document ready code block
