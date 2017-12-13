@@ -1,4 +1,5 @@
 // Global variables
+var userChoice;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 var unansweredCounter = 0;
@@ -67,7 +68,7 @@ var questions = [
 		gif: ""
 	},
 ];
-var messages = ["Yes, that's right!", "Sorry, that's not correct!"];
+var feedback = ["Yes, that's right!", "Sorry, that's not correct!", "Time's up!"];
 
 // -------------------------------------
 
@@ -80,18 +81,21 @@ function decrementTimer() {
 	number--;
 	$(".show-number").html("<h2>Time Remaining: " + number + "</h2>");
 	if (number === 0) {
+		stopTimer();
 		unansweredCounter++;
-	    currentQuestionIndex++;
-	    console.log("Right answers: " + rightAnswers);
-	    console.log("Wrong answers: " + wrongAnswers);
-	    console.log("Unanswered: " + unansweredCounter);
-	    console.log("Question index: " + currentQuestionIndex);
-	    postQuestion();
+		$(".questions-section").html("<h3>" + feedback[2] + "<br> The correct answer was: " + questions[currentQuestionIndex].c[questions[currentQuestionIndex].answer] + "</h3>");
+	    $(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+	    currentQuestionIndex++;	    
   }
 }
 
 function stopTimer() {
 	clearInterval(intervalId);
+}
+
+function resetTimer() {
+	number = 30;
+	intervalId;
 }
 
 function postQuestion() {
@@ -105,6 +109,20 @@ function postQuestion() {
 	} else {
 		$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
 		$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
+	}
+}
+
+function checkAnswer() {
+	if (userChoice === questions[currentQuestionIndex].answer) {
+		rightAnswers++;
+		$(".questions-section").html("<h3>" + feedback[0] + "</h3>");
+		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+		currentQuestionIndex++;
+	} else if (userChoice != questions[currentQuestionIndex].answer) {
+		wrongAnswers++;
+		$(".questions-section").html("<h3>" + feedback[1] + "<br> The correct answer was: " + questions[currentQuestionIndex].c[questions[currentQuestionIndex].answer] + "</h3>");
+		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+		currentQuestionIndex++;
 	}
 }
 
@@ -126,30 +144,11 @@ $(document).ready(function() {
 	    postQuestion();
 
 	    $(".answer-section").find("button").on("click", function() {
-	    	var userChoice = $(this).attr("value");
+	    	userChoice = $(this).attr("value");
 	    	userChoice = parseInt(userChoice);
 	    	stopTimer();
-	    	if (userChoice === questions[currentQuestionIndex].answer) {
-	    		rightAnswers++;
-	    		console.log("Right answers: " + rightAnswers);
-	    		console.log("Wrong answers: " + wrongAnswers);
-	    		console.log("Unanswered: " + unansweredCounter);
-	    		$(".questions-section").html("<h3>" + messages[0] + "</h3>");
-	    		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
-	    		currentQuestionIndex++;
-	    		console.log("Question index: " + currentQuestionIndex);
-	    	} else if (userChoice != questions[currentQuestionIndex].answer) {
-	    		wrongAnswers++;
-	    		currentQuestionIndex++;
-	    		console.log("Right answers: " + rightAnswers);
-	    		console.log("Wrong answers: " + wrongAnswers);
-	    		console.log("Unanswered: " + unansweredCounter);
-	    		$(".questions-section").html("<h3>" + messages[1] + "<br> The correct answer was: " + questions[currentQuestionIndex].c + "</h3>");
-	    		// showAnswer();
-	    	}
-
-	    	// setTimeout(postQuestion(), 4000);
-	    
+	    	resetTimer();
+	    	checkAnswer();	    
 	    });
 	})
 
