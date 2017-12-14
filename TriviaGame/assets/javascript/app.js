@@ -149,6 +149,9 @@ $(document).ready(function() {
 		stopTimer();
 		checkAnswer();
 		checkEnd();
+
+		setTimeout(postQuestion, 5000);
+
 	});
 
 
