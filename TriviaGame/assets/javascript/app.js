@@ -109,6 +109,7 @@ function startGame() {
 
 function postQuestion() {
 	$(".image-section").hide();
+	$(".questions-section").show();
 	$(".answer-section").show();
 	runTimer();
 	$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
@@ -175,27 +176,7 @@ $(document).ready(function() {
 	});
 
 	$(".reset-button").on("click", function() {
-		console.log("reset??");
-		var userChoice;
-		var rightAnswers = 0;
-		var wrongAnswers = 0;
-		var unansweredCounter = 0;
-		var currentQuestionIndex = 0;
-		startGame();
-
-		$(".answer-section").find("button").on("click", function() {
-			userChoice = $(this).attr("value");
-			userChoice = parseInt(userChoice);
-			stopTimer();
-			checkAnswer();
-
-			if (currentQuestionIndex < questions.length) {
-				setTimeout(postQuestion, 3000);
-			} else if (currentQuestionIndex == questions.length) {
-				setTimeout(endGameScreen, 3000);
-			}
-
-		});
+		location.reload();
 
 	});
 
