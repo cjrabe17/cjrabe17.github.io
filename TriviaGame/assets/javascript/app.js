@@ -15,7 +15,7 @@ var questions = [
 	},
 	{ // Second question
 		q: "Which show had a character often called Football Head?",
-		c: ["SpongeBob SquarePants", "Hey Arnold!", "Fairly Odd Parents", "Animaniacs"],
+		c: ["\"SpongeBob SquarePants\"", "\"Hey Arnold!\"", "\"Fairly Odd Parents\"", "\"Animaniacs\""],
 		answer: 1,
 		gif: "https://media.giphy.com/media/3ohjV1vqZH9TnocmSk/giphy.gif"
 	},
@@ -143,7 +143,7 @@ function endGameScreen() {
 	$(".answer-section").hide();
 	$(".image-section").hide();
 	$(".end-game").show();
-	$(".end-game").prepend("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
+	$(".end-game").prepend("<h2>All done!<br>Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
 }
 
 // -------------------------------------

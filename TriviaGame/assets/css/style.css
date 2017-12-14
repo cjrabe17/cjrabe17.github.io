@@ -28,3 +28,8 @@ h3 {
 	margin: 50px auto;
 	border-radius: 15px;
 }
+
+.btn {
+	background: white;
+	font-size: 26px;
+}
