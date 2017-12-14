@@ -177,7 +177,6 @@ $(document).ready(function() {
 
 	$(".reset-button").on("click", function() {
 		location.reload();
-
 	});
 
 
