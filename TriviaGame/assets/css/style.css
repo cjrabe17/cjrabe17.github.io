@@ -2,22 +2,29 @@ body {
 	background: url('../images/bg1.jpg');
 	background-size: cover;
 	text-align: center;
+	color: white;
+	font-family: 'Gloria Hallelujah', cursive;
 }
 
 h1 {
-	font-size: 80px;
+	font-size: 100px;
+	font-family: 'Bangers', cursive;
+	letter-spacing: 2px;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 h2 {
 	font-size: 44px;
+	font-family: 'Gloria Hallelujah', cursive;
 }
 
 h3 {
 	font-size: 32px;
+	font-family: 'Gloria Hallelujah', cursive;
 }
 
 .container {
-	background-color: #ccc;
+	background-color: #f78e1e;
 	margin: 50px auto;
 	border-radius: 15px;
 }

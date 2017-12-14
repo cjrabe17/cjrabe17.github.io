@@ -3,7 +3,7 @@ var userChoice;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 var unansweredCounter = 0;
-var number = 10;
+var number = 20;
 var intervalId;
 var currentQuestionIndex = 0;
 var questions = [
@@ -94,7 +94,7 @@ function decrementTimer() {
 
 function stopTimer() {
 	clearInterval(intervalId);
-	number = 10;
+	number = 20;
 	intervalId;
 }
 
