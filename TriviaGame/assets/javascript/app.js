@@ -80,12 +80,15 @@ function runTimer() {
 function decrementTimer() {
 	$(".show-number").html("<h2>Time Remaining: " + number + "</h2>");
 	number--;
-	if (number === 0) {
+	if (number === -1) {
 		stopTimer();
 		unansweredCounter++;
 		$(".questions-section").html("<h3>" + feedback[2] + "<br> The correct answer was: " + questions[currentQuestionIndex].c[questions[currentQuestionIndex].answer] + "</h3>");
-	    $(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
-	    currentQuestionIndex++;	    
+		$(".answer-section").hide();
+	    $(".image-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+	    $(".image-section").show();
+	    currentQuestionIndex++;
+	    setTimeout(postQuestion, 5000);   
   }
 }
 
@@ -95,7 +98,18 @@ function stopTimer() {
 	intervalId;
 }
 
+function startGame() {
+	$(".start-button").hide();
+	$(".show-number").show();
+	$(".questions-section").show();
+	$(".answer-section").show();
+
+	postQuestion();
+}
+
 function postQuestion() {
+	$(".image-section").hide();
+	$(".answer-section").show();
 	runTimer();
 	$(".questions-section").html("<h3>" + questions[currentQuestionIndex].q + "</h3>");
 	$(".buttonA").text(questions[currentQuestionIndex].c[0]).show();
@@ -108,21 +122,27 @@ function checkAnswer() {
 	if (userChoice === questions[currentQuestionIndex].answer) {
 		rightAnswers++;
 		$(".questions-section").html("<h3>" + feedback[0] + "</h3>");
-		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+		$(".answer-section").hide();
+		$(".image-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+		$(".image-section").show();
 		currentQuestionIndex++;
 	} else if (userChoice != questions[currentQuestionIndex].answer) {
 		wrongAnswers++;
 		$(".questions-section").html("<h3>" + feedback[1] + "<br> The correct answer was: " + questions[currentQuestionIndex].c[questions[currentQuestionIndex].answer] + "</h3>");
-		$(".answer-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+		$(".answer-section").hide();
+		$(".image-section").html("<img src='" + questions[currentQuestionIndex].gif + "'>");
+		$(".image-section").show();
 		currentQuestionIndex++;
 	}
 }
 
-function checkEnd() {
-	if (currentQuestionIndex == questions.length) {
-		$(".container").html("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
-		$(".container").append("<button class='btn btn-warning btn-lg reset-button'>Start Over?</button>");
-	}
+function endGameScreen() {
+	$(".show-number").hide();
+	$(".questions-section").hide();
+	$(".answer-section").hide();
+	$(".image-section").hide();
+	$(".end-game").show();
+	$(".end-game").prepend("<h2>All done! Here's how you did!<br><h3>Right answers: " + rightAnswers + "<br>Wrong answers: " + wrongAnswers + "<br>Unanswered: " + unansweredCounter + "</h3>");
 }
 
 // -------------------------------------
@@ -133,14 +153,11 @@ $(document).ready(function() {
 	$(".show-number").hide();
 	$(".questions-section").hide();
 	$(".answer-section").hide();
+	$(".image-section").hide();
+	$(".end-game").hide();
 
 	$(".start-button").on("click", function() {
-	    $(".start-button").hide();
-	    $(".show-number").show();
-	    $(".questions-section").show();
-	    $(".answer-section").show();
-
-	    postQuestion();
+	    startGame();
 	});
 
 	$(".answer-section").find("button").on("click", function() {
@@ -148,9 +165,37 @@ $(document).ready(function() {
 		userChoice = parseInt(userChoice);
 		stopTimer();
 		checkAnswer();
-		checkEnd();
 
-		setTimeout(postQuestion, 5000);
+		if (currentQuestionIndex < questions.length) {
+			setTimeout(postQuestion, 3000);
+		} else if (currentQuestionIndex == questions.length) {
+			setTimeout(endGameScreen, 3000);
+		}
+
+	});
+
+	$(".reset-button").on("click", function() {
+		console.log("reset??");
+		var userChoice;
+		var rightAnswers = 0;
+		var wrongAnswers = 0;
+		var unansweredCounter = 0;
+		var currentQuestionIndex = 0;
+		startGame();
+
+		$(".answer-section").find("button").on("click", function() {
+			userChoice = $(this).attr("value");
+			userChoice = parseInt(userChoice);
+			stopTimer();
+			checkAnswer();
+
+			if (currentQuestionIndex < questions.length) {
+				setTimeout(postQuestion, 3000);
+			} else if (currentQuestionIndex == questions.length) {
+				setTimeout(endGameScreen, 3000);
+			}
+
+		});
 
 	});
 
