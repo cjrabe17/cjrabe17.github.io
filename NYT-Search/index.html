@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+   <title>New York Times Search</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               <div class="jumbotron bg-primary text-white">
+                   <h1><i class="fa fa-newspaper-o"></i> New York Times Search</h1>
+               </div>
+               
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-12">
+               <div class="panel panel-primary">
+                 <div class="panel-heading"><i class="fa fa-id-card-o"></i> Search Parameters</div>
+                 <div class="panel-body">
+                   <div class="form-group">
+                       <label for="search-term">Search Term:</label>
+                       <input class="form-control">
+                   </div>
+                       <label>Number of Records to Retrieve:</label>
+                       <input id="sel2">
+                       <label>Start Year (Optional):</label>
+                       <input type="" name="">
+                       <label>End Year (Optional):</label>
+                       <input type="" name="">
+                   </form>
+                   <br>
+                   <br>
+                   <button class ="btn btn-primary text-white fa fa-search" id="searchArticle">Search</button>
+                   <button class ="clear btn btn-primary text-white fa fa-trash">Clear Results</button>
+                 </div>
+               </div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-12 ta">
+               <div class="panel panel-primary">
+                 <div class="panel-heading"><i class="fa fa-newspaper-o"></i> Top Articles</div>
+                 <div class="panel-body">
+                 
+                 </div>
+               </div>
+           </div>
+       </div>
+       
+   </div>
+
+   <script>
+   		$("#searchArticle").on("click", function(event) {
+   		           event.preventDefault();
+   		           var inputArticles = $("#searchArticle").val().trim();
+
+   		           displayArticles(inputArticles);
+   		       });
+
+	   	$(".clear").on("click", function(){
+	   	  $("input").reset();
+	   	});
+   </script>
+   <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
