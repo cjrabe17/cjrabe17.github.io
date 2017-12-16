@@ -1,11 +1,13 @@
+// Global variables
 var topics = ["parks and rec", "friends", "community", "archer", "stranger things", "game of thrones", "big bang theory", "buffy", "lost", "top gear"];
 
 
-function createButton() {
-	$("#tvShowButtons").empty();
-}
+// function createButton() {
+// 	$("#tvShowButtons").empty();
+// }
 
-for ( var i = 0; i < topics.length; i++) {
+// Loop to create initial topic buttons
+for (var i = 0; i < topics.length; i++) {
 	var a = $("<button>");
 	a.addClass("show");
 	a.attr("data-name", topics[i]);
@@ -13,6 +15,7 @@ for ( var i = 0; i < topics.length; i++) {
 	$("#tvShowButtons").append(a);
 }
 
+// When show buttons are clicked, retrieve Giphy API info based on button's data-name
 $("button").on("click", function() {
       var title = $(this).attr("data-name");
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
