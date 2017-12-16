@@ -1,0 +1,33 @@
+var topics = ["parks and rec", "friends", "community", "archer", "stranger things", "game of thrones", "big bang theory", "buffy", "lost", "top gear"];
+
+
+function createButton() {
+	$("#tvShowButtons").empty();
+}
+
+for ( var i = 0; i < topics.length; i++) {
+	var a = $("<button>");
+	a.addClass("show");
+	a.attr("data-name", topics[i]);
+	a.text(topics[i]);
+	$("#tvShowButtons").append(a);
+}
+
+
+
+
+
+
+
+$("button").on("click", function() {
+      var title = $(this).attr("");
+      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+        title + "&api_key=IG5uA9qxRpugcORxcT1hkrbVyNHHTy0D";
+
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        	}).done(function(response) {
+
+        });
+});
