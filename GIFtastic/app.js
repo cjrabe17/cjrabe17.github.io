@@ -13,21 +13,15 @@ for ( var i = 0; i < topics.length; i++) {
 	$("#tvShowButtons").append(a);
 }
 
-
-
-
-
-
-
 $("button").on("click", function() {
-      var title = $(this).attr("");
+      var title = $(this).attr("data-name");
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        title + "&api_key=IG5uA9qxRpugcORxcT1hkrbVyNHHTy0D";
+        title + "&api_key=IG5uA9qxRpugcORxcT1hkrbVyNHHTy0D&limit=10";
 
       $.ajax({
           url: queryURL,
           method: "GET"
         	}).done(function(response) {
-
+            console.log(response);
         });
 });

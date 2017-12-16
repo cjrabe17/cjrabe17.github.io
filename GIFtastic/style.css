@@ -1,3 +1,11 @@
 .show {
 	text-transform: capitalize;
 }
+
+form {
+	float: right;
+}
+
+button {
+	margin: 3px;
+}
