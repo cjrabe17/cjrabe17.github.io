@@ -15,16 +15,38 @@ for (var i = 0; i < topics.length; i++) {
 	$("#tvShowButtons").append(a);
 }
 
-// When show buttons are clicked, retrieve Giphy API info based on button's data-name
-$("button").on("click", function() {
-      var title = $(this).attr("data-name");
-      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        title + "&api_key=IG5uA9qxRpugcORxcT1hkrbVyNHHTy0D&limit=10";
+// When the submit button is clicked to add a show
+$("#addShow").on("click", function(event) {
+	event.preventDefaul();
+	console.log("clicked");
+});
 
-      $.ajax({
-          url: queryURL,
-          method: "GET"
-        	}).done(function(response) {
-            console.log(response);
-        });
+// When show a button is clicked, retrieves Giphy API info based on button's data-name
+$("button").on("click", function() {
+    var title = $(this).attr("data-name");
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+    title + "&api_key=IG5uA9qxRpugcORxcT1hkrbVyNHHTy0D&limit=10";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  	}).done(function(response) {
+        var results = response.data;
+        console.log(results);
+        for (var i = 0; i < results.length; i++) {
+            if (results[i].rating == "pg" || results[i].rating == "g") {
+                var gifDiv = $("<div>");
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+
+                var showImage = $("<img>");
+                showImage.attr("src", results[i].images.fixed_height_still.url);
+
+                gifDiv.append(p);
+                gifDiv.append(showImage);
+
+                $("#tvShowGifs").prepend(gifDiv);
+          }
+        }
+    });
 });
