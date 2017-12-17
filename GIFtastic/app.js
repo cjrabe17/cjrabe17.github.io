@@ -11,6 +11,7 @@ function makeButtons() {
 		a.attr("data-name", topics[i]);
 		// Adds an attribute to each 
 		a.attr("data-state", "still");
+		a.addClass("show");
 		// Writes the name of the show to the button
 		a.text(topics[i]);
 		// Adds each button to the end of the ID
@@ -43,6 +44,7 @@ $("button").on("click", function() {
     	method: "GET"
   	}).done(function(response) {
         var results = response.data;
+        console.log(results);
         // Loops through the 10 gif results
         for (var i = 0; i < results.length; i++) {
         	// Limits gifs to PG and G ratings
@@ -57,6 +59,8 @@ $("button").on("click", function() {
                 var showImage = $("<img>");
                 // Gives the image element a link to a still image from the gif
                 showImage.attr("src", results[i].images.fixed_height_still.url);
+                showImage.attr("data-state", "still");
+                showImage.attr("data-animate", results[i].images.downsized.url);
                 // Adds the paragraph and image elements to the end of the div
                 gifDiv.append(p);
                 gifDiv.append(showImage);
@@ -65,4 +69,16 @@ $("button").on("click", function() {
 			}
 		}
 	});
+});
+
+$("img").on("click", function() {
+	console.log("clicked");
+	var state = $(this).attr("data-state");
+	if (state === "still") {
+		$(this).attr("src", $(this).attr("data-animate"));
+		$(this).attr("data-state", "animate");
+	} else {
+		$(this).attr("src", $(this).attr("data-still"));
+		$(this).attr("data-state", "still");
+	}
 });
