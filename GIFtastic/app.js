@@ -9,8 +9,7 @@ function makeButtons() {
 		var a = $("<button>");
 		// Adds an attribute to each button with the name of the show attached to it
 		a.attr("data-name", topics[i]);
-		// Adds an attribute to each 
-		a.attr("data-state", "still");
+		// Adds an attribute to each button for CSS
 		a.addClass("show");
 		// Writes the name of the show to the button
 		a.text(topics[i]);
@@ -22,6 +21,7 @@ makeButtons();
 
 // When the submit button is clicked to add a show
 $("#addShow").on("click", function(event) {
+	console.log("added");
 	event.preventDefault();
 	// Stores the user's input as a variable
 	var show = $("#show-input").val().trim();
@@ -29,10 +29,12 @@ $("#addShow").on("click", function(event) {
 	topics.push(show);
 	// Re-creates the div of buttons
 	makeButtons();
+	
 });
 
 // When show a button is clicked, retrieves Giphy API info based on button's data-name
 $("button").on("click", function() {
+	console.log("buttoned");
     var title = $(this).attr("data-name");
     // URL to access the API based on the show name + limit of 10 gifs
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
@@ -57,10 +59,12 @@ $("button").on("click", function() {
                 var p = $("<p>").text("Rating: " + rating);
                 // Creates an image element in memory
                 var showImage = $("<img>");
-                // Gives the image element a link to a still image from the gif
+                // Gives the image elements attributes for pausing and unpausing
+                showImage.addClass("gif");
                 showImage.attr("src", results[i].images.fixed_height_still.url);
                 showImage.attr("data-state", "still");
                 showImage.attr("data-animate", results[i].images.downsized.url);
+                showImage.attr("data-still", results[i].images.fixed_height_still.url);
                 // Adds the paragraph and image elements to the end of the div
                 gifDiv.append(p);
                 gifDiv.append(showImage);
@@ -68,17 +72,16 @@ $("button").on("click", function() {
                 $("#tvShowGifs").prepend(gifDiv);
 			}
 		}
+		$(".gif").on("click", function() {
+        	console.log("clicked");
+        	var state = $(this).attr("data-state");
+        	if (state === "still") {
+        		$(this).attr("src", $(this).attr("data-animate"));
+        		$(this).attr("data-state", "animate");
+        	} else {
+        		$(this).attr("src", $(this).attr("data-still"));
+        		$(this).attr("data-state", "still");
+        	}
+        });
 	});
-});
-
-$("img").on("click", function() {
-	console.log("clicked");
-	var state = $(this).attr("data-state");
-	if (state === "still") {
-		$(this).attr("src", $(this).attr("data-animate"));
-		$(this).attr("data-state", "animate");
-	} else {
-		$(this).attr("src", $(this).attr("data-still"));
-		$(this).attr("data-state", "still");
-	}
 });
