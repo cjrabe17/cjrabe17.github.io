@@ -36,7 +36,7 @@ $(document).ready(function() {
 	$("div").on("click", "button", function() {
 	    var title = $(this).attr("data-name");
 	    // URL to access the API based on the show name + limit of 10 gifs
-	    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+	    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
 	    title + "&api_key=IG5uA9qxRpugcORxcT1hkrbVyNHHTy0D&limit=10";
 
 	    // Calls the Giphy API
