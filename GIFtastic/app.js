@@ -34,6 +34,7 @@ $(document).ready(function() {
 
 	// When a button is clicked, retrieves Giphy API info based on button's data-name
 	$("div").on("click", "button", function() {
+		$("#tvShowGifs").empty();
 	    var title = $(this).attr("data-name");
 	    // URL to access the API based on the show name + limit of 10 gifs
 	    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
