@@ -71,6 +71,8 @@ $(document).ready(function() {
 	                $("#tvShowGifs").prepend(gifDiv);
 				}
 			}
+
+			// When a gif is clicked, display the moving gif. If it's "playing" and is clicked, switch back to the still
 			$(".gif").on("click", function() {
 	        	var state = $(this).attr("data-state");
 	        	if (state === "still") {
