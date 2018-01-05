@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Timesheet</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+		<h1>Employee Data Management</h1>
+		<h2>A Comprehensive Directory of Employee Billable Hours</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading bg-primary">
+					<h3 class="panel-title">Current Employees</h3>
+				</div>
+				<table class="table">
+					<tr class="tableHeaders">
+						<th>Employee Name</th>
+						<th>Role</th>
+						<th>Start Date</th>
+						<th>Hours Worked</th>
+						<th>Hourly Rate</th>
+						<th>Total Billed</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add Employee</h3>
+				</div>
+				<div class="panel-body">
+					<form>
+						<div class="form-group">
+							<label for="employeeName">Employee Name</label>
+							<input class="form-control" id="employeeName" type="text" required>
+						</div>
+						<div class="form-group">
+							<label for="employeeRole">Role</label>
+							<input class="form-control" id="employeeRole" type="text" required>
+						</div>
+						<div class="form-group">
+							<label for="startDate">Start Date</label>
+							<input class="form-control" id="startDate" type="date" required>
+						</div>
+						<div class="form-group">
+							<label for="hourlyRate">Hourly Rate</label>
+							<input class="form-control" id="hourlyRate" type="number" required>
+						</div>
+						<button class="btn btn-primary" id="addEmployee">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+</body>
+</html>
