@@ -26,8 +26,6 @@ function showButtons() {
 	$().html("<button type='button' class='btn btn-success btn-block' value='r'>Rock</button><button type='button' class='btn btn-warning btn-block' value='p'>Paper</button><button type='button' class='btn btn-danger btn-block' value='s'>Scissors</button>");
 }
 
-
-
 // Start of game
 $(document).ready(function() {
 
