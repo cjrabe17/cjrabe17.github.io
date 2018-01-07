@@ -75,25 +75,6 @@ function checkWinLoss() {
 	}
 }
 
-// function checkLoss() {
-// 	if (attackerHealth <= 0 && defenderHealth > 0) {
-// 		$(".activeOpponent").hide();
-// 		$(".fight-stats h6").html("You lose! Click Reset to try again.");
-// 		$(".reset-button").show();
-// 		$("h3").hide();
-// 		$(".teams").hide();
-// 	}
-// }
-
-// function checkWin() {
-// 	if (defenderHealth <= 0 && attackerHealth > 0) {
-// 		defendersDefeated++;
-// 		$(".activeOpponent").hide();
-// 		defenderChosen = false;
-// 		$(".fight-stats h6").html("You win this match! Click another opponent!");
-// 	}
-// }
-
 function checkEndGame() {
 	if (defendersDefeated == 3) {
 		$(".attack-button").unbind("click");
