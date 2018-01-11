@@ -1,3 +1,11 @@
 body {
-	background: url("../images/random_grey_variations.png") repeat;
+	background: url("../images/white_brick_wall.png") repeat;
+}
+
+h1 {
+	font-family: 'Faster One', cursive;
+}
+
+h2, h3, button {
+	font-family: 'Vast Shadow', cursive;
 }

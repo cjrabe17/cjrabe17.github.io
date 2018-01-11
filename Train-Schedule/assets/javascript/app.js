@@ -13,11 +13,12 @@ $(document).ready(function(){
 
 	var database = firebase.database();
 
-// Listen for button click to add train
+	// Listen for button click to add train to schedule
 	$("#addTrain").on("click", function(event) {
+		// Prevents form from being submitted too early
 		event.preventDefault();
 
-		// Get values from form to send to Firebase
+		// Get values from HTML form to send to Firebase
 		name = $("#trainName").val().trim();
 		destination = $("#destination").val().trim();
 		frequency = $("#frequency").val().trim();
@@ -36,28 +37,36 @@ $(document).ready(function(){
     
     // Grab info from Firebase to display on page
 	database.ref().on("child_added", function(snapshot) {
+		// Creates table row in memory
 		var newRow = $("<tr>");
+		// Adds cells to the in memory table row
 		newRow.append("<td>" + snapshot.val().name + "</td>");
 		newRow.append("<td>" + snapshot.val().destination + "</td>");
 		newRow.append("<td>" + snapshot.val().frequency + "</td>");
 
-		console.log(snapshot.val().time);
-		var startTimeConverted = moment(snapshot.val().time, "HH:mm");
-		console.log("First time is " + startTimeConverted);
+		// Puts the first train time in the right format and ensures it hasn't occurred already
+		var convertedFirstTrain = moment(snapshot.val().time, "HH:mm").subtract(1, "years");
 
-		var now = moment();
+		// Grabs the current time in the right format
+		var now = moment().format("HH:mm");
 
-		var diffTime = moment().diff(moment(startTimeConverted), "minutes");
-		var tRemainder = diffTime % frequency;
-		console.log(tRemainder);
-		var tMinutesTillTrain = frequency - tRemainder;
-		console.log(tMinutesTillTrain);
+		// Calculates the difference between now and the first train
+		var timeDifference = moment().diff(moment(convertedFirstTrain), "minutes");
 
-		var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-		var catchTrain = moment(nextTrain).format("HH:mm");
-		newRow.append("<td>" + catchTrain + "</td>");
-		newRow.append("<td>" + tMinutesTillTrain + "</td>");
+		// Calculates the time apart
+		var remainder = timeDifference % snapshot.val().frequency;
 
+		// Calculates the minutes until the next train's arrival
+		var minutesTillTrain = snapshot.val().frequency - remainder;
+
+		// Adds the minutes until the next train to the current time to get arrival time
+		var nextTrain = moment().add(minutesTillTrain, "minutes");
+
+		// Adds calculated info to table cell in memory
+		newRow.append("<td>" + moment(nextTrain).format("HH:mm") + "</td>");
+		newRow.append("<td>" + minutesTillTrain + "</td>");
+
+		// Adds "in memory" row to the table on the page
 		$(".table").append(newRow);
 		// Logs errors if applicable
     }, function(errorObject) {
