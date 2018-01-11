@@ -1,5 +1,5 @@
 body {
-	background: url("../images/white_brick_wall.png") repeat;
+	background: url("../images/brick-wall.jpeg") repeat;
 }
 
 h1 {
@@ -8,4 +8,20 @@ h1 {
 
 h2, h3, button {
 	font-family: 'Vast Shadow', cursive;
+}
+
+table, label {
+	font-family: 'Montserrat', sans-serif;
+}
+
+img {
+	width: 400px;
+}
+
+.panel > .panel-heading, .btn {
+	background: #800000;
+}
+
+.panel {
+	border: 1px solid black;
 }
