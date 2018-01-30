@@ -3,6 +3,7 @@ var keys = require('./keys.js');
 var request = require('request');
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
+var fs = require("fs");
 
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
@@ -15,8 +16,7 @@ for (i = 4; i < nodeArgv.length; i++) {
     searchTerm += '+' + nodeArgv[i];
 }
 
-// Limit tweets to 20
-if (command == 'my-tweets') {
+function myTweets() {
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
             for (i = 0; i < tweets.length; i++) {
@@ -27,7 +27,9 @@ if (command == 'my-tweets') {
             console.log(error);
         }
     });
-} else if (command == 'spotify-this-song') {
+}
+
+function spotifyThis() {
     if (searchTerm !== undefined) {
         spotify.search({type: 'track', query: searchTerm, limit: 1}, function(err, data) {
             if (!err) {
@@ -45,7 +47,9 @@ if (command == 'my-tweets') {
             }
         });
     }
-} else if (command == 'movie-this') {
+}
+
+function movieThis() {
     if (searchTerm !== undefined) {
         request('http://www.omdbapi.com/?t=' + searchTerm + '&plot=short&apikey=trilogy', function(error, response, body) {
             if (!error && response.statusCode === 200) {
@@ -61,8 +65,34 @@ if (command == 'my-tweets') {
             }
         });
     }
-} else if (command == 'do-what-it-says') {
+}
 
+// Limit tweets to 20
+if (command == 'my-tweets') {
+    myTweets();
+} else if (command == 'spotify-this-song') {
+    spotifyThis(searchTerm);
+} else if (command == 'movie-this') {
+    movieThis(searchTerm);
+} else if (command == 'do-what-it-says') {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+            if (error) {
+              return console.log(error);
+            } else {
+                var dataArr = data.split(',');
+                var argOne = dataArr[0];
+                var argTwo = dataArr[1];
+                if (argOne == 'my-tweets') {
+                    myTweets();
+                } else if (argOne == 'spotify-this-song') {
+                    spotifyThis();
+                } else if (argOne == 'movie-this') {
+                    movieThis();
+                } else {
+                    console.log('It does not tell me what to do. :(');
+                }
+            }
+        });
 } else {
-    console.log('Please type an approved command.');
+    console.log('Please type an approved command: my-tweets, spotify-this-song, movie-this, or do-what-it-says');
 }
