@@ -7,7 +7,7 @@ var fs = require("fs");
 
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
-var params = {screen_name: 'cjrabe17'};
+var params = {screen_name: 'cjrabe17', count: 20};
 
 var nodeArgv = process.argv;
 var command = process.argv[2];
@@ -29,7 +29,7 @@ function myTweets() {
     });
 }
 
-function spotifyThis() {
+function spotifyThis(searchTerm) {
     if (searchTerm !== undefined) {
         spotify.search({type: 'track', query: searchTerm, limit: 1}, function(err, data) {
             if (!err) {
@@ -49,7 +49,7 @@ function spotifyThis() {
     }
 }
 
-function movieThis() {
+function movieThis(searchTerm) {
     if (searchTerm !== undefined) {
         request('http://www.omdbapi.com/?t=' + searchTerm + '&plot=short&apikey=trilogy', function(error, response, body) {
             if (!error && response.statusCode === 200) {
@@ -67,7 +67,27 @@ function movieThis() {
     }
 }
 
-// Limit tweets to 20
+function doIt() {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+            if (error) {
+                return console.log(error);
+            } else {
+                var dataArr = data.split(',');
+                command = dataArr[0];
+                searchTerm = dataArr[1];
+                if (command == 'my-tweets') {
+                    myTweets();
+                } else if (command == 'spotify-this-song') {
+                    spotifyThis(searchTerm);
+                } else if (command == 'movie-this') {
+                    movieThis(searchTerm);
+                } else {
+                    console.log('It doesn\'t tell me what to do. :(');
+                }
+            }
+        });
+}
+
 if (command == 'my-tweets') {
     myTweets();
 } else if (command == 'spotify-this-song') {
@@ -75,24 +95,7 @@ if (command == 'my-tweets') {
 } else if (command == 'movie-this') {
     movieThis(searchTerm);
 } else if (command == 'do-what-it-says') {
-    fs.readFile("random.txt", "utf8", function(error, data) {
-            if (error) {
-              return console.log(error);
-            } else {
-                var dataArr = data.split(',');
-                var argOne = dataArr[0];
-                var argTwo = dataArr[1];
-                if (argOne == 'my-tweets') {
-                    myTweets();
-                } else if (argOne == 'spotify-this-song') {
-                    spotifyThis();
-                } else if (argOne == 'movie-this') {
-                    movieThis();
-                } else {
-                    console.log('It does not tell me what to do. :(');
-                }
-            }
-        });
+    doIt();
 } else {
     console.log('Please type an approved command: my-tweets, spotify-this-song, movie-this, or do-what-it-says');
 }
