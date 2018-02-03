@@ -1,0 +1,14 @@
+{
+  "name": "constructor-hangman",
+  "version": "1.0.0",
+  "description": "Week 11 Homework for UCF Coding Bootcamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cassie Rabe",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^5.0.1"
+  }
+}
