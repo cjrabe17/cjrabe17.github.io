@@ -1,12 +1,31 @@
 var Letter = require("./Letter");
 console.log("require successful");
 
-// var wordsArr = ["eleven", "demogorgon", "hawkins", "upside down", "eggo"];
-
-var Word = function (wrd) {
-    this.wrd = wrd;
+var Word = function () {
     this.lettersArr = [];
-    this.getWord = function () {
-        
+    this.isFound = false;
+    this.wordGuess = "";
+    this.getWordToDisplay = function(word) {
+        this.wordGuess = "";
+        for (var i = 0; i < word.length; i++) {
+            var newLetter = new Letter(word[i]);
+            this.lettersArr.push(newLetter);
+        }
+        for (i = 0; i < this.lettersArr.length; i++) {
+            this.wordGuess += this.lettersArr[i].displayLetter();
+        }
+        console.log(this.wordGuess);
+    }
+    this.letterGuess = function (userGuess) {
+        this.wordGuess = "";
+        for (var i = 0; i < lettersArr.length; i++) {
+            this.lettersArr[i].checkGuess(userGuess);
+        }
+        for (i = 0; i < this.lettersArr.length; i++) {
+            this.wordGuess += this.lettersArr[i].displayLetter();
+        }
+        console.log(this.wordGuess);
     }
 }
+
+module.exports = Word;

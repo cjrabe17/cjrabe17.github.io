@@ -1,17 +1,20 @@
-var Letter = function(characterInWord, guessedYet) {
-    this.characterInWord = characterInWord,
-    this.guessedYet = false,
+var Letter = function(letterInWord) {
+    this.letterInWord = letterInWord,
+    this.guessed = false,
     this.displayLetter = function() {
-        if (this.guessedYet === true) {
-            return this.characterInWord;
+        if (this.guessed === true) {
+            return this.letterInWord;
+            console.log(this.letterInWord);
         } else {
-            return " _ ";
+            return "_ ";
+            // console.log("_ ");
         }
     }
     this.checkGuess = function (letterGuessed) {
-        if (letterGuessed == characterInWord) {
-            guessedYet = true;
+        if (letterGuessed == letterInWord) {
+            this.guessed = true;
         }
+        this.displayLetter();
     }
 }
 
