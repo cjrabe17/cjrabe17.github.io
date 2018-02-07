@@ -4,7 +4,6 @@ var Letter = function(letterInWord) {
     this.displayLetter = function() {
         if (this.guessed === true) {
             return this.letterInWord;
-            console.log(this.letterInWord);
         } else {
             return " _ ";
         }

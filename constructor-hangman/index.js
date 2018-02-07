@@ -4,7 +4,6 @@ var Word = require("./Word");
 var wordsArr = ["eleven", "demogorgon", "hawkins", "upsidedown", "eggo", "madmax", "pollywog", "mindflayer", "walkietalkie", "digdug", "eighties"];
 
 var word = "";
-// var remainingGuesses = 10;
 var game = {
     start: function() {
         word = new Word();
@@ -14,11 +13,9 @@ var game = {
     round: function() {
         if (word.correct === false && word.remainingGuesses === 0) {
             this.end();
-        }
-        else if (word.isFound === true) {
+        } else if (word.isFound === true) {
             this.end();
-        }
-        else {
+        } else {
             this.promptUser();
         }
     },
@@ -37,7 +34,7 @@ var game = {
     },
     end: function() {
         var that = this;
-        if (word.win === true) {
+        if (word.isFound === true) {
             console.log("You win! The mind flayer isn't going to get you!");
             inquirer.prompt([
                 {
