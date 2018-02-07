@@ -6,8 +6,7 @@ var Letter = function(letterInWord) {
             return this.letterInWord;
             console.log(this.letterInWord);
         } else {
-            return "_ ";
-            // console.log("_ ");
+            return " _ ";
         }
     }
     this.checkGuess = function (letterGuessed) {

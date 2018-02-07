@@ -1,5 +1,4 @@
 var Letter = require("./Letter");
-console.log("require successful");
 
 var Word = function () {
     this.lettersArr = [];
