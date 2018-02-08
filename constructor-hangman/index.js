@@ -1,4 +1,5 @@
 var inquirer = require("inquirer");
+var colors = require("colors");
 var Word = require("./Word");
 
 var wordsArr = ["eleven", "demogorgon", "hawkins", "upsidedown", "eggo", "madmax", "pollywog", "mindflayer", "walkietalkie", "digdug", "eighties"];
@@ -35,35 +36,33 @@ var game = {
     end: function() {
         var that = this;
         if (word.isFound === true) {
-            console.log("You win! The mind flayer isn't going to get you!");
+            console.log("You win! The mind flayer isn't going to get you!\n---------------------------------------------".magenta);
             inquirer.prompt([
                 {
                     type: "confirm",
-                    message: "Would you like to play again?",
-                    name: "playAgain",
-                    default: false
+                    name: "restart",
+                    message: "Would you like to play again?"
                 }
             ]).then(function(answers){
-                if (answers.playAgain === true) {
-                    that.gameStart();
+                if (answers.restart === true) {
+                    that.start();
                 } else {
-                    console.log("Lame... Enjoy getting stuck in the Upside Down.");
+                    console.log("Lame... Enjoy getting stuck in the Upside Down.\n---------------------------------------------".yellow);
                 }
             });
         } else {
-            console.log("You lose. The demogorgons ate you.");
+            console.log("You lose. The demogorgons ate you.\n---------------------------------------------".red);
             inquirer.prompt([
                 {
                     type: "confirm",
-                    message: "Would you like to play again?",
-                    name: "playAgain",
-                    default: false
+                    name: "restart",
+                    message: "Would you like to play again?"
                 }
             ]).then(function(answers){
-                if (answers.playAgain === true) {
-                    that.gameStart();
+                if (answers.restart === true) {
+                    that.start();
                 } else {
-                    console.log("Lame... Enjoy getting stuck in the Upside Down.");
+                    console.log("Lame... Enjoy getting stuck in the Upside Down.\n---------------------------------------------".yellow);
                 }
             });
         }
