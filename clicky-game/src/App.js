@@ -1,19 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CharacterCard from "./components/CharacterCard";
+import Wrapper from "./components/Wrapper";
+import Container from "./components/Container";
+import Jumbotron from "./components/Jumbotron";
+import Navbar from "./components/Navbar";
+import characters from "./characters.json";
+import "./App.css";
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    characters
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Wrapper>
+        <Navbar> 
+        </Navbar>
+        <Jumbotron>
+        </Jumbotron>
+        <Container>
+          {this.state.characters.map(character => (
+            <CharacterCard
+              id={character.id}
+              key={character.id}
+              name={character.name}
+              image={character.image}
+            />
+          ))}
+        </Container>
+      </Wrapper>
     );
   }
 }

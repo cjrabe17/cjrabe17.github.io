@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "name": "Gru",
+      "image": "/assets/images/gru.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Margo",
+        "image": "/assets/images/margo.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Edith",
+        "image": "/assets/images/edith.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Agnes",
+        "image": "/assets/images/agnes.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Dr. Nefario",
+        "image": "/assets/images/drnefario.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Lucy",
+        "image": "/assets/images/lucy.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Bob",
+        "image": "/assets/images/bob.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Kevin",
+        "image": "/assets/images/kevin.jpg"
+      },
+      {
+        "id": 9,
+        "name": "Stuart",
+        "image": "/assets/images/stuart.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Dave",
+        "image": "/assets/images/dave.jpg"
+      },
+      {
+        "id": 11,
+        "name": "Mel",
+        "image": "/assets/images/mel.jpg"
+      },
+      {
+        "id": 12,
+        "name": "Carl",
+        "image": "/assets/images/carl.jpg"
+      }
+  ]
