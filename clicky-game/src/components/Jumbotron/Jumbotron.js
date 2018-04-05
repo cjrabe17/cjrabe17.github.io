@@ -3,9 +3,9 @@ import "./Jumbotron.css";
 
 const Jumbotron = props => {
   return (
-    <div>
-        <h1 className="display-3">Hello, world!</h1>
-        <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
+    <div className="jumbotron">
+        <h1 className="display-3">Despicable Clicky Game!</h1>
+        <p className="lead">Click on an image to earn points, but don't click on any more than once!</p>
     </div>
   );
 };

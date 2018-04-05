@@ -1,11 +1,11 @@
 import React from "react";
 import CharacterCard from "./components/CharacterCard";
-import Wrapper from "./components/Wrapper";
-import Container from "./components/Container";
 import Jumbotron from "./components/Jumbotron";
 import Navbar from "./components/Navbar";
+import Container from "./components/Container";
 import characters from "./characters.json";
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 
 class App extends React.Component {
   state = {
@@ -14,22 +14,21 @@ class App extends React.Component {
 
   render() {
     return (
-      <Wrapper>
-        <Navbar> 
-        </Navbar>
-        <Jumbotron>
-        </Jumbotron>
+      <div>
+        <Navbar />
+        <Jumbotron />
         <Container>
-          {this.state.characters.map(character => (
-            <CharacterCard
-              id={character.id}
-              key={character.id}
-              name={character.name}
-              image={character.image}
-            />
-          ))}
+        {this.state.characters.map(character => (
+          <CharacterCard
+            id={character.id}
+            key={character.id}
+            name={character.name}
+            image={character.image}
+          />
+        ))}
         </Container>
-      </Wrapper>
+        <Footer />
+      </div>
     );
   }
 }
