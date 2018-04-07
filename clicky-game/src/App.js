@@ -49,12 +49,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="text-center">
-        <Navbar />
-        <Jumbotron 
+        <Navbar 
           message = {this.state.message}
-          current score = {this.state.currentScore}
+          currentScore = {this.state.currentScore}
           highScore = {this.state.highScore}
         />
+        <Jumbotron />
         <Container>
         {this.state.characters.map(character => (
           <CharacterCard
