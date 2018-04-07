@@ -28,16 +28,16 @@ class App extends React.Component {
 
     if (findCharacter === undefined) {
       this.setState({
-        message: "Incorrect Guess!",
+        message: "Wrong!",
         highScore: (this.state.currentScore > this.state.highScore) ? this.state.currentScore : this.state.highScore,
         currentScore: 0,
-        characters: characters,
+        characters,
         unselectedCharacters: characters
       });
     } else {
       const findNewCharacter = this.state.unselectedCharacters.filter(item => item.name !== character);
       this.setState({
-        message: "Correct Guess!",
+        message: "Correct!",
         currentScore: this.state.currentScore + 1,
         characters,
         unselectedCharacters: findNewCharacter
@@ -62,7 +62,7 @@ class App extends React.Component {
             key={character.id}
             name={character.name}
             image={character.image}
-            selectCharacter={this.state.selectCharacter}
+            selectCharacter={this.selectCharacter}
             currentScore={this.state.currentScore}
           />
         ))}
