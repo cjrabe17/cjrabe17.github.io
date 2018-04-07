@@ -24,20 +24,20 @@ class App extends React.Component {
   };
 
   selectCharacter = character => {
-    const findCharacter = this.state.unselectedCharacters.find(item => item.character === character);
+    const findCharacter = this.state.unselectedCharacters.find(item => item.name === character);
 
     if (findCharacter === undefined) {
       this.setState({
-        message: "Wrong!",
+        message: "Incorrect Guess!",
         highScore: (this.state.currentScore > this.state.highScore) ? this.state.currentScore : this.state.highScore,
         currentScore: 0,
-        characters,
+        characters: characters,
         unselectedCharacters: characters
       });
     } else {
-      const findNewCharacter = this.state.unselectedCharacters.filter(item => item.character !== character);
+      const findNewCharacter = this.state.unselectedCharacters.filter(item => item.name !== character);
       this.setState({
-        message: "Correct!",
+        message: "Correct Guess!",
         currentScore: this.state.currentScore + 1,
         characters,
         unselectedCharacters: findNewCharacter
@@ -48,7 +48,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="text-center">
         <Navbar />
         <Jumbotron 
           message = {this.state.message}
