@@ -3,20 +3,58 @@ import CharacterCard from "./components/CharacterCard";
 import Jumbotron from "./components/Jumbotron";
 import Navbar from "./components/Navbar";
 import Container from "./components/Container";
+import Footer from "./components/Footer/Footer";
 import characters from "./characters.json";
 import "./App.css";
-import Footer from "./components/Footer/Footer";
 
 class App extends React.Component {
   state = {
-    characters
+    characters,
+    message: "Click an image to begin!",
+    highScore: 0,
+    currentScore: 0,
+    unselectedCharacters: characters
   };
+
+  randomizeCharacters = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    };
+  };
+
+  selectCharacter = character => {
+    const findCharacter = this.state.unselectedCharacters.find(item => item.character === character);
+
+    if (findCharacter === undefined) {
+      this.setState({
+        message: "Wrong!",
+        highScore: (this.state.currentScore > this.state.highScore) ? this.state.currentScore : this.state.highScore,
+        currentScore: 0,
+        characters,
+        unselectedCharacters: characters
+      });
+    } else {
+      const findNewCharacter = this.state.unselectedCharacters.filter(item => item.character !== character);
+      this.setState({
+        message: "Correct!",
+        currentScore: this.state.currentScore + 1,
+        characters,
+        unselectedCharacters: findNewCharacter
+      });
+  } 
+  this.randomizeCharacters(characters);
+  }
 
   render() {
     return (
       <div>
         <Navbar />
-        <Jumbotron />
+        <Jumbotron 
+          message = {this.state.message}
+          current score = {this.state.currentScore}
+          highScore = {this.state.highScore}
+        />
         <Container>
         {this.state.characters.map(character => (
           <CharacterCard
@@ -24,6 +62,8 @@ class App extends React.Component {
             key={character.id}
             name={character.name}
             image={character.image}
+            selectCharacter={this.state.selectCharacter}
+            currentScore={this.state.currentScore}
           />
         ))}
         </Container>
